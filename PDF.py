@@ -12,6 +12,8 @@ if on:
 	image_size_x=0
 	image_size_y=[]
 	image_list=[]
+	import glob
+	st.write(glob.glob("./*"))
 	for uploaded_file in uploaded_files:
 		name="./"+uploaded_file.name
 		st.write(uploaded_file)
