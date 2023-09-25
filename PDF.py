@@ -40,7 +40,7 @@ if on:
 		pdf.set_top_margin(0)
 		
 		st.write(image_size_x,image_size_y[y])
-		pdf.image(image_list[y],image_size_x,image_size_y[y])
+		pdf.image(image_list[y],210 ,297)
 		st.write(pdf)
 	pdf.output("@Polls_Quiz.pdf", "F")
 	with open("./@Polls_Quiz.pdf", "rb") as file:
