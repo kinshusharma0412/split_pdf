@@ -14,15 +14,15 @@ if on:
 	image_size_y=[]
 	image_list=[]
 	
-	st.write(glob.glob("./*"))
+	
 	for uploaded_file in uploaded_files:
 		name="./"+uploaded_file.name
 		st.write(uploaded_file)
-		st.write(name)
+		
 		with open(name, "wb") as file:
 			file.write(uploaded_file.getvalue())
 		image1 = Image.open(name)
-		st.image(image1)
+		
 		image_list.append(name)
 		st.write(image1.size)
 		
@@ -34,6 +34,7 @@ if on:
 	pdf=FPDF()
 	pdf.add_page()
 	for y in range(len(image_list)):
+		st.write(image_size_x,image_size_y[y])
 		pdf.image(image_list[y],w=image_size_x,h=image_size_y[y])
 	pdf.output("@Polls_Quiz.pdf", "F")
 	with open("./@Polls_Quiz.pdf", "rb") as file:
