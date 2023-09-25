@@ -15,25 +15,21 @@ if on:
 		dict=[]
 		for uploaded_file in uploaded_files:
 			name="./"+uploaded_file.name
-			
 			with open(name, "wb") as file:
 				file.write(uploaded_file.getvalue())
-			image1 = Image.open(name)
-			st.session_state["img"].append(img2pdf.convert(image1.filename))
+			#image1 = Image.open(name)
+			st.session_state["img"].append((name))
 	else:
 		dict=[]
 		for uploaded_file in uploaded_files:
 			name="./"+uploaded_file.name
-			
 			with open(name, "wb") as file:
 				file.write(uploaded_file.getvalue())
-			image1 = Image.open(name)
-			st.session_state["img"].append(img2pdf.convert(image1.filename))
+			st.session_state["img"].append((name))
 		
 		pdf_path="./@Polls_Quiz.pdf"
 		file = open(pdf_path, "wb")
-		for y in st.session_state["img"]:
-			file.write(y)
+		file.write(img2pdf.convert(st.session_state["img"]))
 		file.close()
 		with open(pdf_path, "rb") as file:
 			btn = st.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream")	
