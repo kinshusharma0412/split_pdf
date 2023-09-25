@@ -6,8 +6,7 @@ import glob,img2pdf
 #from PyPDF2 import PdfReader, PdfWriter, PageObject
 on = st.toggle('Image to PDF feature')
 pdf_path="./@Polls_Quiz.pdf"
-st.write(st.session_state)
-st.write("3")
+
 if 'img' not in st.session_state:
 	st.session_state.img = []
 if 'clicked' not in st.session_state:
@@ -25,11 +24,9 @@ if on:
 			file.write(img2pdf.convert(st.session_state["img"]))
 			file.close()
 			with open(pdf_path, "rb") as file:
-				if pq.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):
-					st.write("1")
+				if pq.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):l
 					st.stop()
 		if st.session_state.clicked:
-			st.write("2")
 			dict=[]
 			for uploaded_file in uploaded_files:
 				name="./"+uploaded_file.name
@@ -43,9 +40,6 @@ if on:
 			file.close()
 			with open(pdf_path, "rb") as file:
 				if pq.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):
-					st.write("4")
-					
-					st.stop()
 		else:
 			st.session_state.clicked=True
 		
