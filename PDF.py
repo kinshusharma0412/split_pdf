@@ -6,6 +6,8 @@ import glob,img2pdf
 #from PyPDF2 import PdfReader, PdfWriter, PageObject
 on = st.toggle('Image to PDF feature')
 st.write(st.session_state)
+if 'img' not in st.session_state:
+	st.session_state.img = []
 if 'clicked' not in st.session_state:
 	st.session_state.clicked = True
 if 'dow' not in st.session_state:
