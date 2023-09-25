@@ -14,6 +14,7 @@ if on:
 	image_list=[]
 	for uploaded_file in uploaded_files:
 		name="./"+uploaded_file.name
+		st.write(uploaded_file)
 		st.write(name)
 		image1 = Image.open(name)
 		image_list.append(image1)
