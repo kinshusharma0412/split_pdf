@@ -2,7 +2,7 @@ import os
 from fpdf import FPDF
 import streamlit as st
 from PIL import Image
-from PyPDF2 import PdfReader, PdfWriter, PageObject
+#from PyPDF2 import PdfReader, PdfWriter, PageObject
 on = st.toggle('Image to PDF feature')
 
 if on:
