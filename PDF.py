@@ -22,6 +22,7 @@ if on:
 		with open(name, "wb") as file:
 			file.write(uploaded_file.getvalue())
 		image1 = Image.open(name)
+		st.image(image1)
 		image_list.append(image1)
 		st.write(image1.size)
 		
