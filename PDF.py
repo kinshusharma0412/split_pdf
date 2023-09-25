@@ -7,6 +7,7 @@ import glob,img2pdf
 on = st.toggle('Image to PDF feature')
 pdf_path="./@Polls_Quiz.pdf"
 st.write(st.session_state)
+
 if 'img' not in st.session_state:
 	st.session_state.img = []
 if 'clicked' not in st.session_state:
@@ -19,13 +20,15 @@ if on:
 	if uploaded_files:
 		st.session_state.dow=True
 	if st.session_state.dow:
-		file = open(pdf_path, "wb")
-		file.write(img2pdf.convert(st.session_state["img"]))
-		file.close()
-		with open(pdf_path, "rb") as file:
-			if st.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):
-				st.session_state.clicked=False
-				st.stop()
+			
+			if len(st.session_state["img"])!=0:
+				file = open(pdf_path, "wb")
+				file.write(img2pdf.convert(st.session_state["img"]))
+				file.close()
+				with open(pdf_path, "rb") as file:
+					if st.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):
+						st.session_state.clicked=False
+					st.stop()
 	if uploaded_files:
 		if st.session_state.clicked:
 			dict=[]
@@ -34,15 +37,16 @@ if on:
 				with open(name, "wb") as file:
 					file.write(uploaded_file.getvalue())
 				st.session_state["img"].append((name))
-			
-			
+				
 		else:
 			st.session_state.clicked=True
+		
 			
-	
-				
+			
+
 			
 		
+	
 		
 	
 		
