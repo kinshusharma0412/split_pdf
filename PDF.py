@@ -2,7 +2,7 @@ import os
 from fpdf import FPDF
 import streamlit as st
 from PIL import Image
-import glob
+import glob,img2pdf
 #from PyPDF2 import PdfReader, PdfWriter, PageObject
 on = st.toggle('Image to PDF feature')
 
@@ -23,26 +23,15 @@ if on:
 			file.write(uploaded_file.getvalue())
 		image1 = Image.open(name)
 		
-		image_list.append(name)
-		st.write(image1.size)
+		image_list.append(img2pdf.convert(image1.filename))
 		
-		dict.append(image1)
-		if image_size_x<image1.size[0]*2.54/96:
-			image_size_x=image1.size[0]*2.54/96
-		image_size_y.append(image1.size[1]*2.54/96)
 		
-	pdf=FPDF()
-	
-	for y in range(len(image_list)):
-		pdf.add_page()
-		pdf.set_left_margin(0)
-		pdf.set_right_margin(0)
-		pdf.set_top_margin(0)
+	pdf_path="./@Polls_Quiz.pdf"
+	file = open(pdf_path, "wb")
+	for y in image_list:
+		file.write(y)
+	file.close()
 		
-		st.write(image_size_x,image_size_y[y])
-		pdf.image(image_list[y],210 ,297)
-		st.write(pdf)
-	pdf.output("@Polls_Quiz.pdf", "F")
-	with open("./@Polls_Quiz.pdf", "rb") as file:
-		btn = st.download_button(label="Download image",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream")
+	with open(pdf_path, "rb") as file:
+		btn = st.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream")
 		
