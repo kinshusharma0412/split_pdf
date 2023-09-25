@@ -23,7 +23,7 @@ if on:
 			image_size_x=image1.size()[0]
 		image_size_y.append(image1.size()[1])
 		
-		
+	pdf=FPDF()
 	pdf.add_page()
 	for y in range(len(image_list)):
 		pdf.image(image_list[y],w=image_size_x,h=image_size_y[y])
@@ -31,4 +31,3 @@ if on:
 	with open(".\@Polls_Quiz.pdf", "rb") as file:
 		btn = st.download_button(label="Download image",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream")
 		
-
