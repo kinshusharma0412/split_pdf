@@ -24,7 +24,7 @@ if on:
 			file.write(img2pdf.convert(st.session_state["img"]))
 			file.close()
 			with open(pdf_path, "rb") as file:
-				if pq.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):l
+				if pq.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):
 					st.stop()
 		if st.session_state.clicked:
 			dict=[]
