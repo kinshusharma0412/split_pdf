@@ -7,7 +7,7 @@ import glob,img2pdf
 on = st.toggle('Image to PDF feature')
 pdf_path="./@Polls_Quiz.pdf"
 st.write(st.session_state)
-
+st.write("3")
 if 'img' not in st.session_state:
 	st.session_state.img = []
 if 'clicked' not in st.session_state:
@@ -16,33 +16,29 @@ if 'dow' not in st.session_state:
 	st.session_state.dow = False
 if on:
 	st.write('Activate Image to PDF feature')
-	uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
-	if uploaded_files:
-		st.session_state.dow=True
-	if st.session_state.dow:
-			
-			if len(st.session_state["img"])!=0:
-				file = open(pdf_path, "wb")
-				file.write(img2pdf.convert(st.session_state["img"]))
-				file.close()
-				with open(pdf_path, "rb") as file:
-					if st.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):
-						st.session_state.clicked=False
-					st.stop()
+	uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)			
 	if uploaded_files:
 		if st.session_state.clicked:
+			st.write("2")
 			dict=[]
 			for uploaded_file in uploaded_files:
 				name="./"+uploaded_file.name
 				with open(name, "wb") as file:
 					file.write(uploaded_file.getvalue())
 				st.session_state["img"].append((name))
-				
 		else:
 			st.session_state.clicked=True
+		if len(st.session_state["img"])!=0:
+			file = open(pdf_path, "wb")
+			file.write(img2pdf.convert(st.session_state["img"]))
+			file.close()
+			with open(pdf_path, "rb") as file:
+				if st.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):
+					st.write("1")
+					st.session_state.clicked=False
+	
 		
-			
-			
+		
 
 			
 		
