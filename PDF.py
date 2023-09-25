@@ -28,14 +28,14 @@ if on:
 		
 		dict.append(image1)
 		if image_size_x<image1.size[0]:
-			image_size_x=image1.size[0]
-		image_size_y.append(image1.size[1])
+			image_size_x=image1.size[0]/37.795
+		image_size_y.append(image1.size[1]/37.795)
 		
 	pdf=FPDF()
 	pdf.add_page()
 	for y in range(len(image_list)):
 		st.write(image_size_x,image_size_y[y])
-		pdf.image(image_list[y])
+		pdf.image(image_list[y],image_size_x,image_size_y[y])
 		st.write(pdf)
 	pdf.output("@Polls_Quiz.pdf", "F")
 	with open("./@Polls_Quiz.pdf", "rb") as file:
