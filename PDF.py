@@ -7,11 +7,6 @@ import glob,img2pdf
 on = st.toggle('Image to PDF feature')
 
 if on:
-	pdf_path="./@Polls_Quiz.pdf"
-	file = open(pdf_path, "wb")
-	for y in image_list:
-		file.write(y)
-	file.close()
 	if "img" not in st.session_state:
 		st.session_state["img"]=[]
 	else:
