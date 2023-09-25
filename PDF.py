@@ -23,7 +23,8 @@ if on:
 			file.write(uploaded_file.getvalue())
 		image1 = Image.open(name)
 		image_list.append(image1)
-		image1.show()
+		st.write(image1.size())
+		
 		dict.append(image1)
 		if image_size_x<image1.size()[0]:
 			image_size_x=image1.size()[0]
