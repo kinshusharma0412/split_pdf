@@ -2,6 +2,7 @@ import os
 from fpdf import FPDF
 import streamlit as st
 from PIL import Image
+import glob
 #from PyPDF2 import PdfReader, PdfWriter, PageObject
 on = st.toggle('Image to PDF feature')
 
@@ -12,12 +13,14 @@ if on:
 	image_size_x=0
 	image_size_y=[]
 	image_list=[]
-	import glob
+	
 	st.write(glob.glob("./*"))
 	for uploaded_file in uploaded_files:
 		name="./"+uploaded_file.name
 		st.write(uploaded_file)
 		st.write(name)
+		with open(name, "wb") as file:
+			file.write(uploaded_file.getvalue())
 		image1 = Image.open(name)
 		image_list.append(image1)
 		image1.show()
