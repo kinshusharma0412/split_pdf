@@ -29,8 +29,8 @@ if on:
 		
 		with open(pdf_path, "rb") as file:
 			if st.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):
-				st.session_state["img"]=[]
-				st.stop()
+				on=False
+				
 			
 		
 		
