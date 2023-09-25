@@ -1,0 +1,10 @@
+streamlit
+apscheduler
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+oauth2client<4.0.0
+xlsxwriter
+Pillow
+pymongo
+git+https://github.com/rthalley/dnspython
