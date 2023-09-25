@@ -15,6 +15,8 @@ if 'dow' not in st.session_state:
 if on:
 	st.write('Activate Image to PDF feature')
 	uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
+	if uploaded_files:
+		st.session_state.dow=True
 	if st.session_state.dow:
 		with open(pdf_path, "rb") as file:
 			if st.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):
