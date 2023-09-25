@@ -19,6 +19,9 @@ if on:
 	if uploaded_files:
 		st.session_state.dow=True
 	if st.session_state.dow:
+		file = open(pdf_path, "wb")
+		file.write(img2pdf.convert(st.session_state["img"]))
+		file.close()
 		with open(pdf_path, "rb") as file:
 			if st.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):
 				st.session_state.clicked=False
@@ -32,10 +35,7 @@ if on:
 					file.write(uploaded_file.getvalue())
 				st.session_state["img"].append((name))
 			
-			file = open(pdf_path, "wb")
-			file.write(img2pdf.convert(st.session_state["img"]))
-			file.close()
-			st.session_state.dow=True
+			
 		else:
 			st.session_state.clicked=True
 			
