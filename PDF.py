@@ -5,6 +5,7 @@ from PIL import Image
 import glob,img2pdf
 #from PyPDF2 import PdfReader, PdfWriter, PageObject
 on = st.toggle('Image to PDF feature')
+pdf_path="./@Polls_Quiz.pdf"
 st.write(st.session_state)
 if 'img' not in st.session_state:
 	st.session_state.img = []
@@ -30,7 +31,7 @@ if on:
 				with open(name, "wb") as file:
 					file.write(uploaded_file.getvalue())
 				st.session_state["img"].append((name))
-			pdf_path="./@Polls_Quiz.pdf"
+			
 			file = open(pdf_path, "wb")
 			file.write(img2pdf.convert(st.session_state["img"]))
 			file.close()
