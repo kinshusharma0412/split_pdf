@@ -29,6 +29,6 @@ if on:
 	for y in range(len(image_list)):
 		pdf.image(image_list[y],w=image_size_x,h=image_size_y[y])
 	pdf.output("@Polls_Quiz.pdf", "F")
-	with open(".\@Polls_Quiz.pdf", "rb") as file:
+	with open("./@Polls_Quiz.pdf", "rb") as file:
 		btn = st.download_button(label="Download image",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream")
 		
