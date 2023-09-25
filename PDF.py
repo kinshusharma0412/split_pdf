@@ -35,7 +35,8 @@ if on:
 	pdf.add_page()
 	for y in range(len(image_list)):
 		st.write(image_size_x,image_size_y[y])
-		pdf.image(image_list[y],w=image_size_x,h=image_size_y[y])
+		pdf.image(image_list[y])
+		st.write(pdf)
 	pdf.output("@Polls_Quiz.pdf", "F")
 	with open("./@Polls_Quiz.pdf", "rb") as file:
 		btn = st.download_button(label="Download image",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream")
