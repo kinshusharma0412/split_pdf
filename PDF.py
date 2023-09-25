@@ -35,7 +35,7 @@ if on:
 	
 	for y in range(len(image_list)):
 		pdf.add_page()
-		pdf.set_margins(0,0,0)
+		pdf.set_margins(0,0)
 		st.write(image_size_x,image_size_y[y])
 		pdf.image(image_list[y],image_size_x,image_size_y[y])
 		st.write(pdf)
