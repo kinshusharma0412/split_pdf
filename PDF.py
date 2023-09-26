@@ -4,7 +4,8 @@ import streamlit as st
 from PIL import Image
 import glob,img2pdf
 #from PyPDF2 import PdfReader, PdfWriter, PageObject
-on = st.toggle('Image to PDF feature')
+
+on = st.empty()
 pdf_path="./@Polls_Quiz.pdf"
 
 if 'img' not in st.session_state:
@@ -13,9 +14,10 @@ if 'clicked' not in st.session_state:
 	st.session_state.clicked = True
 if 'dow' not in st.session_state:
 	st.session_state.dow = False
-if on:
+if st.st.toggle('Image to PDF feature'):
 	st.write('Activate Image to PDF feature')
-	with st.form(key="form"):
+	place_holder=st.empty()
+	with place_holder.st.form(key="form"):
 		multiple = st.toggle('Do you want to same image comes multiple times in pdf if you upload it multiple times')
 		files = uploaded_files = st.file_uploader("Choose a image file (multiple files are accepted)", accept_multiple_files=True)
 		submit_button = st.form_submit_button(label="Submit your choice")
@@ -39,8 +41,7 @@ if on:
 		with open(pdf_path, "rb") as file:
 			if st.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):
 				on.empty()
-				#on.toggle('Image to PDF feature')
-				submit_button.empty()
+				place_holder.empty()
 		
 					
 		
