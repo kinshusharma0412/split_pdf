@@ -101,6 +101,7 @@ elif onn.toggle('PDF to Excle feature'):
 		sheet_names = pd.ExcelFile(name).sheet_names
 		df = pd.read_excel(name)
 		for x in sheet_names:
+			st.write(x)
 			df.parse(x)
 			
 		
