@@ -84,12 +84,12 @@ elif onon.toggle('PDF Spliter feature'):
 				file = open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1),"rb")
 				st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" %str(len(inputpdf.pages)//pagen+1),mime="application/octet-stream")
 
-elif onn.toggle('PDF to Excle feature'):
+elif onn.toggle('Excle to PDF feature'):
 # Read pdf into a list of DataFrame
-	st.write("This feature can convert your PDF into Excle file")
+	st.write("This feature can convert your PDF into PDF file")
 	place_holder=st.empty()
 	with place_holder.form(key="form2"):
-		uploaded_files = st.file_uploader("Choose a PDF file (multiple files are not accepted)", accept_multiple_files=False)
+		uploaded_files = st.file_uploader("Choose a .xlsx file (multiple files are not accepted)", accept_multiple_files=False)
 		line=st.empty()
 		submit_button = st.empty()
 		if uploaded_files:
@@ -102,7 +102,7 @@ elif onn.toggle('PDF to Excle feature'):
 		sheet_names = pd.ExcelFile(name)
 		dff=[]
 		y=0
-		btn=st.empty()
+		
 		for x in sheet_names.sheet_names:
 			df = pd.read_excel(name,x)
 			df.to_html(name[:-5]+".html")
