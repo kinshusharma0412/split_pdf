@@ -46,6 +46,8 @@ if on.toggle('Image to PDF feature'):
 				on.empty()
 				#on.toggle('Image to PDF feature')
 				place_holder.empty()
+else:
+	st.write("3")
 		
 					
 		
