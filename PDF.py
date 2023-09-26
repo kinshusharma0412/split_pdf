@@ -32,7 +32,8 @@ if on:
 				name="./"+uploaded_file.name
 				with open(name, "wb") as file:
 					file.write(uploaded_file.getvalue())
-				st.session_state["img"].append((name))
+				if name not in st.session_state["img"]:
+					st.session_state["img"].append((name))
 		if st.session_state.clicked:
 			st.session_state.clicked = False
 			file = open(pdf_path, "wb")
