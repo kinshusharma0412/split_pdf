@@ -76,7 +76,7 @@ if on.toggle('Image to PDF feature'):
 					back_ground= Image.open(back_name)
 					Image1copy = im.copy()
 					Image2copy = back_ground.copy()
-					Image1copy.paste(Image2copy, ((xxx-im.size[1])//2,, 0))
+					Image1copy.paste(Image2copy, ((xxx-im.size[1])//2,0))
 					
 				else:
 					back_resize=back_ground.resize(xxx,xxx)
