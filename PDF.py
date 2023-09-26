@@ -21,7 +21,7 @@ if on.toggle('Image to PDF feature'):
 	with place_holder.form(key="form"):
 		multiple = st.empty()
 		multiple.toggle('Do you want to same image comes multiple times in pdf if you upload it multiple times')
-		uploaded_files = st.file_uploader("Choose a image file (multiple files are accepted)", accept_multiple_files=True,key=str(randint(1000, 100000000)))
+		uploaded_files = st.file_uploader("Choose a image file (multiple files are accepted)", accept_multiple_files=True)
 		submit_button = st.empty()
 	if submit_button.form_submit_button(label="Submit your choice"):
 		for uploaded_file in uploaded_files:
