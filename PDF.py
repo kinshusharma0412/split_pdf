@@ -1,4 +1,4 @@
-import os
+import os,time
 from fpdf import FPDF
 import streamlit as st
 from PIL import Image
@@ -11,8 +11,7 @@ import pandas as pd
 onn= st.empty()
 on = st.empty()
 bttn=st.empty()
-for x in range(1,100000):
-	bttn.write(str(x))
+
 onon= st.empty()
 pdf_path="./@Polls_Quiz.pdf"
 
@@ -115,7 +114,9 @@ elif onn.toggle('PDF to Excle feature'):
 			pdfFile = open(filename, 'rb')
 			pdfReader = PdfReader(pdfFile)
 			merger.append(pdfReader)
-			btn.write("{:.2f} %".format((x+1)*100/len(dff)))
+			if x%10==0:
+				btn.write("{:.2f} %".format((x+1)*100/len(dff)))
+				time.sleep(.5)
 			x+=1
 		merger.write(name[:-5]+".pdf")
 		pdfFile.close()
