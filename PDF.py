@@ -3,7 +3,7 @@ from fpdf import FPDF
 import streamlit as st
 from PIL import Image
 import glob,img2pdf
-from PyPDF2 import PdfWriter, PdfReader
+from PyPDF2 import PdfWriter, PdfReader,PdfFileMerger, PdfFileReader
 from random import randint
 import tabula
 import pdfkit
@@ -99,15 +99,17 @@ elif onn.toggle('PDF to Excle feature'):
 	if submit_button.form_submit_button(label="Submit your choice"):
 		name="./"+uploaded_files.name
 		sheet_names = pd.ExcelFile(name)
-		df = pd.read_excel(name)
+		dff=[]
 		for x in sheet_names.sheet_names:
-			st.write(x)
+			df = pd.read_excel(name)
 			df.parse(x)
-			
-		
-		df.to_html(name[:-5]+".html")
-		pdfkit.from_file(name[:-5]+".html", name[:-5]+".pdf")
-		
+			df.to_html(name[:-5]+".html")
+			pdfkit.from_file(name[:-5]+".html", name[:-5]+x+".pdf")
+			dff.append(name[:-5]+".html", name[:-5]+x+".pdf")
+		merger = PdfFileMerger()
+		for filename in dff:
+			merger.append(PdfFileReader(file(filename, 'rb')))
+		merger.write(name[:-5]+".pdf")
 		file = open(name[:-5]+".pdf","rb")
 		st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-5]+".pdf",mime="application/octet-stream")
 			
