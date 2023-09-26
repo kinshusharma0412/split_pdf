@@ -113,7 +113,7 @@ elif onn.toggle('PDF to Excle feature'):
 			pdfFile = open(filename, 'rb')
 			pdfReader = PdfReader(pdfFile)
 			merger.append(pdfReader)
-			btn.write("{:.2f} %".format(x*100/len(dff)))
+			btn.write("{:.2f} %".format((x+1)*100/len(dff)))
 			x+=1
 		merger.write(name[:-5]+".pdf")
 		pdfFile.close()
