@@ -100,7 +100,7 @@ elif onn.toggle('PDF to Excle feature'):
 		name="./"+uploaded_files.name
 		sheet_names = pd.ExcelFile(name).sheet_names
 		df = pd.read_excel(name)
-		for x in sheet_names:
+		for x in range(len(sheet_names)):
 			st.write(x)
 			df.parse(x)
 			
