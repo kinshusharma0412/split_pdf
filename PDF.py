@@ -5,7 +5,8 @@ from PIL import Image
 import glob,img2pdf
 from PyPDF2 import PdfWriter, PdfReader
 from random import randint
-
+import tabula
+import pdfkit
 on = st.empty()
 onn= st.empty()
 pdf_path="./@Polls_Quiz.pdf"
@@ -78,4 +79,27 @@ elif onn.toggle('PDF Spliter feature'):
 					output.write(outputStream)
 				file = open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1),"rb")
 				st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" %str(len(inputpdf.pages)//pagen+1),mime="application/octet-stream")
-						
+
+elif onn.toggle('PDF to Excle feature'):
+# Read pdf into a list of DataFrame
+	st.write("This feature can convert your PDF into Excle file")
+	place_holder=st.empty()
+	with place_holder.form(key="form2"):
+		uploaded_files = st.file_uploader("Choose a PDF file (multiple files are not accepted)", accept_multiple_files=False)
+		line=st.empty()
+		submit_button = st.empty()
+		if uploaded_files:
+			name="./"+uploaded_files.name
+			with open(name, "wb") as file:
+				file.write(uploaded_files.getvalue())
+			inputpdf = PdfReader(open(name, "rb"))
+	if submit_button.form_submit_button(label="Submit your choice"):
+		name="./"+uploaded_files.name
+		
+		df = pd.read_excel(name)
+		df.to_html(name[:-5]+".html")
+		nampdfkit.from_file(name[:-5]+".html", name[:-5]+".pdf")
+		
+		file = open(name[:-5]+".pdf","rb")
+		st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" % (i+1),mime="application/octet-stream")
+			
