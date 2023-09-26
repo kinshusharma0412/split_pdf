@@ -105,7 +105,7 @@ elif onn.toggle('PDF to Excle feature'):
 			df = pd.read_excel(name,x)
 			df.to_html(name[:-5]+".html")
 			pdfkit.from_file(name[:-5]+".html", name[:-5]+x+".pdf")
-			dff.append(name[:-5]+".html", name[:-5]+x+".pdf")
+			dff.append(name[:-5]+x+".pdf")
 		merger = PdfFileMerger()
 		for filename in dff:
 			merger.append(PdfFileReader(file(filename, 'rb')))
