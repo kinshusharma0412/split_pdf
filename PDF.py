@@ -31,15 +31,19 @@ if on.toggle('Image to PDF feature'):
 	st.write('Activate Image to PDF feature')
 	tm=st.empty()
 	place_holder=st.empty()
-	
+	st.session_state.back = False
 	with place_holder.form(key="form1"):
 		if tm.toggle('Add Background image to PDF'):
 			back_uploaded_files = st.file_uploader("Choose a background image file (remember i will convert your image to square image)", accept_multiple_files=False)
+			if back_uploaded_files:
+				st.session_state.back = True
+			
 		multiple=st.toggle('Do you want to same image comes multiple times in pdf if you upload it multiple times')
 		uploaded_files = st.file_uploader("Choose a image file (multiple files are accepted)", accept_multiple_files=True)
 		submit_button = st.empty()
 	if submit_button.form_submit_button(label="Submit your choice"):
-		if back_uploaded_files:
+		 
+		if st.session_state.back:
 			back_name="./"+back_uploaded_files.name
 			with open(back_name, "wb") as file:
 				file.write(back_uploaded_files.getvalue())
@@ -70,7 +74,7 @@ if on.toggle('Image to PDF feature'):
 				new=im.resize((xxx, im.size[1]))
 				new.save(x)
 				if xxx>im.size[1]:
-					back_resize=back_ground.resize(im.size[1],im.size[1])
+					back_resize=back_ground.resize((im.size[1],im.size[1]))
 					back_resize.save(back_name)
 					im = Image.open(x)
 					back_ground= Image.open(back_name)
@@ -79,7 +83,7 @@ if on.toggle('Image to PDF feature'):
 					Image1copy.paste(Image2copy, ((xxx-im.size[1])//2,0))
 					
 				else:
-					back_resize=back_ground.resize(xxx,xxx)
+					back_resize=back_ground.resize((xxx,xxx))
 					back_resize.save(back_name)
 					im = Image.open(x)
 					back_ground= Image.open(back_name)
