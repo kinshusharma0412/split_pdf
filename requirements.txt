@@ -3,3 +3,4 @@ fpdf
 Pillow
 pypdf2
 img2pdf
+tabula-py
