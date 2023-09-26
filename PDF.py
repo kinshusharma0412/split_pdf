@@ -59,11 +59,11 @@ if on.toggle('Image to PDF feature'):
 						
 						st.session_state["img"].append((name))
 		xxx=0
+		for x in st.session_state["img"]:
+			im = Image.open(x).size[0]
+			xxx=im+xxx
+		xxx=xxx//len(st.session_state["img"])
 		if back_uploaded_files:
-			for x in st.session_state["img"]:
-				im = Image.open(x).size[0]
-				xxx=im+xxx
-			xxx=xxx//len(st.session_state["img"])
 			for x in st.session_state["img"]:
 				im = Image.open(x)
 				back_ground= Image.open(back_name)
@@ -71,16 +71,25 @@ if on.toggle('Image to PDF feature'):
 				new.save(x)
 				if xxx>im.size[1]:
 					back_resize=back_ground.resize(im.size[1],im.size[1])
-					new=Image.Image.paste(new, back_resize, ((xxx-im.size[1])//2, 0))
+					back_resize.save(back_name)
+					im = Image.open(x)
+					back_ground= Image.open(back_name)
+					Image1copy = im.copy()
+					Image2copy = back_ground.copy()
+					Image1copy.paste(Image2copy, ((xxx-im.size[1])//2,, 0))
+					
 				else:
 					back_resize=back_ground.resize(xxx,xxx)
-					new=Image.Image.paste(new, back_resize, (0, (im.size[1]-xxx)//2))
-				new.save(x)
+					back_resize.save(back_name)
+					im = Image.open(x)
+					back_ground= Image.open(back_name)
+					Image1copy = im.copy()
+					Image2copy = back_ground.copy()
+					Image1copy.paste(Image2copy, (0, (im.size[1]-xxx)//2))
+					
+				Image1copy.save(x)
 		else:
-			for x in st.session_state["img"]:
-				im = Image.open(x).size[0]
-				xxx=im+xxx
-			xxx=xxx//len(st.session_state["img"])
+			
 			for x in st.session_state["img"]:
 				im = Image.open(x)
 				new=im.resize((xxx, im.size[1]))
