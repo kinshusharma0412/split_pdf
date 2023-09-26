@@ -3,7 +3,7 @@ from fpdf import FPDF
 import streamlit as st
 from PIL import Image
 import glob,img2pdf
-from PyPDF2 import PdfWriter, PdfReader,PdfMerger
+from PyPDF2 import PdfWriter, PdfReader,PdfMerger, PdfFileReader
 from random import randint
 import tabula
 import pdfkit
@@ -107,9 +107,8 @@ elif onn.toggle('PDF to Excle feature'):
 			pdfkit.from_file(name[:-5]+".html", name[:-5]+x+".pdf")
 			dff.append(name[:-5]+x+".pdf")
 		merger = PdfMerger()
-		st.write(dff)
 		for filename in dff:
-			merger.append(PdfReader(file(filename, 'rb')))
+			merger.append(PdfFileReader(file(filename, 'rb')))
 		merger.write(name[:-5]+".pdf")
 		file = open(name[:-5]+".pdf","rb")
 		st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-5]+".pdf",mime="application/octet-stream")
