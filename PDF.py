@@ -11,7 +11,7 @@ import pandas as pd
 bttn=st.empty()
 
 onn= st.empty()
-tm=st.empty()
+
 on = st.empty()
 
 
@@ -31,7 +31,9 @@ if on.toggle('Image to PDF feature'):
 	st.write('Activate Image to PDF feature')
 	place_holder=st.empty()
 	with place_holder.form(key="form1"):
-		if on.toggle('Add Background image to PDF'):
+		tm=st.empty()
+		
+		if tm.toggle('Add Background image to PDF'):
 			back_uploaded_files = st.file_uploader("Choose a background image file (remember i will convert your image to square image)", accept_multiple_files=False)
 		multiple=st.toggle('Do you want to same image comes multiple times in pdf if you upload it multiple times')
 		uploaded_files = st.file_uploader("Choose a image file (multiple files are accepted)", accept_multiple_files=True)
@@ -40,7 +42,7 @@ if on.toggle('Image to PDF feature'):
 		if back_uploaded_files:
 			back_name="./"+back_uploaded_files.name
 			with open(back_name, "wb") as file:
-				file.write(uploaded_files.getvalue())
+				file.write(back_uploaded_files.getvalue())
 		for uploaded_file in uploaded_files:
 				if multiple:
 					
