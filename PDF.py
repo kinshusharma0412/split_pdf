@@ -67,7 +67,7 @@ if on.toggle('Image to PDF feature'):
 			im = Image.open(x).size[0]
 			xxx=im+xxx
 		xxx=xxx//len(st.session_state["img"])
-		if back_uploaded_files:
+		if st.session_state.back:
 			for x in st.session_state["img"]:
 				im = Image.open(x)
 				back_ground= Image.open(back_name)
