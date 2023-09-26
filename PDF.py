@@ -86,7 +86,7 @@ elif onon.toggle('PDF Spliter feature'):
 
 elif onn.toggle('Excle to PDF feature'):
 # Read pdf into a list of DataFrame
-	st.write("This feature can convert your PDF into PDF file")
+	st.write("This feature can convert your Excel file into PDF file")
 	place_holder=st.empty()
 	with place_holder.form(key="form2"):
 		uploaded_files = st.file_uploader("Choose a .xlsx file (multiple files are not accepted)", accept_multiple_files=False)
