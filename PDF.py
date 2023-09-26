@@ -7,6 +7,7 @@ from PyPDF2 import PdfWriter, PdfReader
 from random import randint
 import tabula
 import pdfkit
+import panda as pd
 onn= st.empty()
 on = st.empty()
 
