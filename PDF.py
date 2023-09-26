@@ -101,7 +101,7 @@ elif onn.toggle('PDF to Excle feature'):
 		
 		df = pd.read_excel(name)
 		df.to_html(name[:-5]+".html")
-		nampdfkit.from_file(name[:-5]+".html", name[:-5]+".pdf")
+		pdfkit.from_file(name[:-5]+".html", name[:-5]+".pdf")
 		
 		file = open(name[:-5]+".pdf","rb")
 		st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" % (i+1),mime="application/octet-stream")
