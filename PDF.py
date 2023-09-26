@@ -10,7 +10,9 @@ import pdfkit
 import pandas as pd
 onn= st.empty()
 on = st.empty()
-
+bttn=st.empty()
+for x in range(1,100000):
+	bttn.write(str(x))
 onon= st.empty()
 pdf_path="./@Polls_Quiz.pdf"
 
