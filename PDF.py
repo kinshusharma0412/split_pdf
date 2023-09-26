@@ -3,10 +3,11 @@ from fpdf import FPDF
 import streamlit as st
 from PIL import Image
 import glob,img2pdf
-#from PyPDF2 import PdfReader, PdfWriter, PageObject
+from PyPDF2 import PdfWriter, PdfReader
 from random import randint
 
 on = st.empty()
+onn= st.empty()
 pdf_path="./@Polls_Quiz.pdf"
 
 if 'img' not in st.session_state:
@@ -45,8 +46,36 @@ if on.toggle('Image to PDF feature'):
 				on.empty()
 				#on.toggle('Image to PDF feature')
 				place_holder.empty()
-else:
-	st.write("3")
+elif onn.toggle('PDF Spliter feature'):
+	st.write("This feature can split your PDF into multiple PDF")
+	place_holder=st.empty()
+	with place_holder.form(key="form"):
+		uploaded_files = st.file_uploader("Choose a PDF file (multiple files are not accepted)", accept_multiple_files=False)
+		line=st.empty()
+		submit_button = st.empty()
+		for uploaded_file in uploaded_files:
+			name="./"+uploaded_file.name
+			with open(name, "wb") as file:
+				file.write(uploaded_file.getvalue())
+		inputpdf = PdfReader(open("document.pdf", "rb"))
+		pagen = st.slider('How old are you?', 1, inputpdf.pages, inputpdf.pages//5)
+		if submit_button.form_submit_button(label="Submit your choice"):
+			for i in range((pagen)):
+				output = PdfWriter()
+				for x in range((inputpdf.pages//pagen)):
+					output.add_page(inputpdf.pages[x*i])
+				with open(name[2:-4]+" %s.pdf" % (i+1), "wb") as outputStream:
+					output.write(outputStream)
+				file = open(name[2:-4]+" %s.pdf" % (i+1),"rb")
+				st.download_button(label="Download PDF",data=file.read(),file_name=,mime="application/octet-stream")
+				
+				
+		
+		
+			
+				
+				
+		
 		
 					
 		
