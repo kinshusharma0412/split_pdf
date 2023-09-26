@@ -68,14 +68,14 @@ elif onn.toggle('PDF Spliter feature'):
 			with open(name[2:-4]+" %s.pdf" % (i+1), "wb") as outputStream:
 				output.write(outputStream)
 			file = open(name[2:-4]+" %s.pdf" % (i+1),"rb")
-			st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" % (i+1),mime="application/octet-stream",key=str(i+1))
+			st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" % (i+1),mime="application/octet-stream")
 		output = PdfWriter()
 		for i in range((len(inputpdf.pages)//pagen)*pagen,len(inputpdf.pages)):
 			output.add_page(inputpdf.pages[i])
 		with open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1), "wb") as outputStream:
 			output.write(outputStream)
 		file = open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1),"rb")
-		st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" %(len(inputpdf.pages)//pagen)+1,mime="application/octet-stream",key=str((len(inputpdf.pages)//pagen)+1))
+		st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" %(len(inputpdf.pages)//pagen)+1,mime="application/octet-stream")
 				
 				
 			
