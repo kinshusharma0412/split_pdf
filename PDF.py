@@ -26,11 +26,13 @@ if on.toggle('Image to PDF feature'):
 	if submit_button.form_submit_button(label="Submit your choice"):
 		for uploaded_file in uploaded_files:
 				if multiple:
+					st.write("1")
 					name="./"+uploaded_file.name
 					with open(name, "wb") as file:
 						file.write(uploaded_file.getvalue())
 					st.session_state["img"].append((name))
 				else:
+					st.write("2")
 					name="./"+uploaded_file.name
 					if name not in st.session_state["img"]:
 						with open(name, "wb") as file:
