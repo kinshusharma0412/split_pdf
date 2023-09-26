@@ -102,9 +102,7 @@ elif onn.toggle('PDF to Excle feature'):
 		dff=[]
 		y=0
 		for x in sheet_names.sheet_names:
-			df = pd.read_excel(name)
-			df.parse(y)
-			y+=1
+			df = pd.read_excel(name,x)
 			df.to_html(name[:-5]+".html")
 			pdfkit.from_file(name[:-5]+".html", name[:-5]+x+".pdf")
 			dff.append(name[:-5]+".html", name[:-5]+x+".pdf")
