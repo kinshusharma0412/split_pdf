@@ -42,7 +42,17 @@ if on.toggle('Image to PDF feature'):
 					if name not in st.session_state["img"]:
 						with open(name, "wb") as file:
 							file.write(uploaded_file.getvalue())
+						
 						st.session_state["img"].append((name))
+		xxx=0
+		for x in st.session_state["img"]:
+			im = Image.open(x).size[0]
+			if im>xxx:
+				xxx=im
+		for x in st.session_state["img"]:
+			im = Image.open(x)
+			image.resize((xxx, image.size[1]))
+			new_image.save(x)
 		file = open(pdf_path, "wb")
 		file.write(img2pdf.convert(st.session_state["img"]))
 		file.close()
