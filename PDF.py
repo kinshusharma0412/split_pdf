@@ -59,12 +59,12 @@ elif onn.toggle('PDF Spliter feature'):
 				file.write(uploaded_files.getvalue())
 			inputpdf = PdfReader(open(name, "rb"))
 			st.write(inputpdf)
-			pagen = line.slider('Select page number', 1, inputpdf.pages, inputpdf.pages//5)
+			pagen = line.slider('Select page number', 1, inputpdf.numPages, inputpdf.numPages//5)
 	if submit_button.form_submit_button(label="Submit your choice"):
 		for i in range((pagen)):
 			output = PdfWriter()
-			for x in range((inputpdf.pages//pagen)):
-				output.add_page(inputpdf.pages[x*i])
+			for x in range((inputpdf.numPages//pagen)):
+				output.add_page(inputpdf.numPages[x*i])
 			with open(name[2:-4]+" %s.pdf" % (i+1), "wb") as outputStream:
 				output.write(outputStream)
 			file = open(name[2:-4]+" %s.pdf" % (i+1),"rb")
