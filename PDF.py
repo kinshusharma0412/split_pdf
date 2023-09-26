@@ -58,6 +58,7 @@ elif onn.toggle('PDF Spliter feature'):
 			with open(name, "wb") as file:
 				file.write(uploaded_files.getvalue())
 			inputpdf = PdfReader(open(name, "rb"))
+			st write(len(inputpdf.pages))
 			pagen = line.slider('Select page number', 1, len(inputpdf.pages), len(inputpdf.pages)//5)
 	if submit_button.form_submit_button(label="Submit your choice"):
 		for i in range((len(inputpdf.pages)//pagen)):
@@ -71,10 +72,10 @@ elif onn.toggle('PDF Spliter feature'):
 		output = PdfWriter()
 		for i in range((len(inputpdf.pages)//pagen)*pagen,len(inputpdf.pages)):
 			output.add_page(inputpdf.pages[i])
-			with open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1), "wb") as outputStream:
-				output.write(outputStream)
-			file = open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1),"rb")
-			st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" % (i+1),mime="application/octet-stream")
+		with open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1), "wb") as outputStream:
+			output.write(outputStream)
+		file = open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1),"rb")
+		st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" % (i+1),mime="application/octet-stream")
 				
 				
 			
