@@ -59,22 +59,23 @@ elif onn.toggle('PDF Spliter feature'):
 				file.write(uploaded_files.getvalue())
 			inputpdf = PdfReader(open(name, "rb"))
 			
-			pagen = line.slider('Select page number', 1, len(inputpdf.pages), len(inputpdf.pages)//5)
+			pagen = line.slider('Select page number', 0, len(inputpdf.pages), 0)
 	if submit_button.form_submit_button(label="Submit your choice"):
-		for i in range((len(inputpdf.pages)//pagen)):
+		if pagen>0:
+			for i in range((len(inputpdf.pages)//pagen)):
+				output = PdfWriter()
+				for x in range((pagen)):
+					output.add_page(inputpdf.pages[x*i])
+				with open(name[2:-4]+" %s.pdf" % (i+1), "wb") as outputStream:
+					output.write(outputStream)
+				file = open(name[2:-4]+" %s.pdf" % (i+1),"rb")
+				st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" % (i+1),mime="application/octet-stream")
 			output = PdfWriter()
-			for x in range((pagen)):
-				output.add_page(inputpdf.pages[x*i])
-			with open(name[2:-4]+" %s.pdf" % (i+1), "wb") as outputStream:
-				output.write(outputStream)
-			file = open(name[2:-4]+" %s.pdf" % (i+1),"rb")
-			st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" % (i+1),mime="application/octet-stream")
-		output = PdfWriter()
-		if (len(inputpdf.pages)//pagen)*pagen!=len(inputpdf.pages):
-			for i in range((len(inputpdf.pages)//pagen)*pagen,len(inputpdf.pages)):
-				output.add_page(inputpdf.pages[i])
-			with open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1), "wb") as outputStream:
-				output.write(outputStream)
-			file = open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1),"rb")
-			st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" %str(len(inputpdf.pages)//pagen+1),mime="application/octet-stream")
-					
+			if (len(inputpdf.pages)//pagen)*pagen!=len(inputpdf.pages):
+				for i in range((len(inputpdf.pages)//pagen)*pagen,len(inputpdf.pages)):
+					output.add_page(inputpdf.pages[i])
+				with open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1), "wb") as outputStream:
+					output.write(outputStream)
+				file = open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1),"rb")
+				st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" %str(len(inputpdf.pages)//pagen+1),mime="application/octet-stream")
+						
