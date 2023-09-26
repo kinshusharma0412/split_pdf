@@ -26,7 +26,7 @@ if on.toggle('Image to PDF feature'):
 	if submit_button.form_submit_button(label="Submit your choice"):
 		for uploaded_file in uploaded_files:
 				if multiple:
-					st.write("1")
+					st.write(multiple)
 					name="./"+uploaded_file.name
 					with open(name, "wb") as file:
 						file.write(uploaded_file.getvalue())
