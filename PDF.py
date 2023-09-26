@@ -94,7 +94,7 @@ elif onn.toggle('PDF to Excle feature'):
 			name="./"+uploaded_files.name
 			with open(name, "wb") as file:
 				file.write(uploaded_files.getvalue())
-			inputpdf = PdfReader(open(name, "rb"))
+			
 	if submit_button.form_submit_button(label="Submit your choice"):
 		name="./"+uploaded_files.name
 		
