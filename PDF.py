@@ -101,7 +101,7 @@ elif onn.toggle('PDF to Excle feature'):
 		sheet_names = pd.ExcelFile(name).sheet_names
 		df = pd.read_excel(name)
 		for x in sheet_names:
-			df = xl.parse(x)
+			df.parse(x)
 			
 		
 		df.to_html(name[:-5]+".html")
