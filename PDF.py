@@ -14,15 +14,15 @@ if 'clicked' not in st.session_state:
 	st.session_state.clicked = True
 if 'dow' not in st.session_state:
 	st.session_state.dow = False
-if st.st.toggle('Image to PDF feature'):
+if on.toggle('Image to PDF feature'):
 	st.write('Activate Image to PDF feature')
 	place_holder=st.empty()
 	with place_holder.st.form(key="form"):
-		multiple = st.toggle('Do you want to same image comes multiple times in pdf if you upload it multiple times')
-		files = uploaded_files = st.file_uploader("Choose a image file (multiple files are accepted)", accept_multiple_files=True)
-		submit_button = st.form_submit_button(label="Submit your choice")
-	if submit_button:
-		
+		multiple = st.empty()
+		multiple.toggle('Do you want to same image comes multiple times in pdf if you upload it multiple times')
+		uploaded_files = st.file_uploader("Choose a image file (multiple files are accepted)", accept_multiple_files=True)
+		submit_button = st.empty()
+	if submit_button.form_submit_button(label="Submit your choice"):
 		for uploaded_file in uploaded_files:
 				if multiple:
 					name="./"+uploaded_file.name
@@ -41,6 +41,7 @@ if st.st.toggle('Image to PDF feature'):
 		with open(pdf_path, "rb") as file:
 			if st.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):
 				on.empty()
+				#on.toggle('Image to PDF feature')
 				place_holder.empty()
 		
 					
