@@ -75,20 +75,22 @@ if on.toggle('Image to PDF feature'):
 				new.save(x)
 				if xxx>im.size[1]:
 					back_resize=back_ground.resize((im.size[1],im.size[1]))
-					back_resize.putalpha(127)
+					
 					back_resize.save(back_name)
 					im = Image.open(x)
 					back_ground= Image.open(back_name)
+					back_ground.putalpha(80)
 					Image1copy = im.copy()
 					Image2copy = back_ground.copy()
 					Image1copy.paste(Image2copy, ((xxx-im.size[1])//2,0))
 					
 				else:
 					back_resize=back_ground.resize((xxx,xxx))
-					back_resize.putalpha(127)
+					
 					back_resize.save(back_name)
 					im = Image.open(x)
 					back_ground= Image.open(back_name)
+					back_ground.putalpha(80)
 					Image1copy = im.copy()
 					Image2copy = back_ground.copy()
 					Image1copy.paste(Image2copy, (0, (im.size[1]-xxx)//2))
