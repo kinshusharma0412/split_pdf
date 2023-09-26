@@ -8,9 +8,12 @@ from random import randint
 import tabula
 import pdfkit
 import pandas as pd
-onn= st.empty()
-on = st.empty()
 bttn=st.empty()
+
+onn= st.empty()
+tm=st.empty()
+on = st.empty()
+
 
 onon= st.empty()
 pdf_path="./@Polls_Quiz.pdf"
@@ -21,14 +24,23 @@ if 'clicked' not in st.session_state:
 	st.session_state.clicked = True
 if 'dow' not in st.session_state:
 	st.session_state.dow = False
+
+	
+	
 if on.toggle('Image to PDF feature'):
 	st.write('Activate Image to PDF feature')
 	place_holder=st.empty()
 	with place_holder.form(key="form1"):
+		if on.toggle('Add Background image to PDF'):
+			back_uploaded_files = st.file_uploader("Choose a background image file (remember i will convert your image to square image)", accept_multiple_files=False)
 		multiple=st.toggle('Do you want to same image comes multiple times in pdf if you upload it multiple times')
 		uploaded_files = st.file_uploader("Choose a image file (multiple files are accepted)", accept_multiple_files=True)
 		submit_button = st.empty()
 	if submit_button.form_submit_button(label="Submit your choice"):
+		if back_uploaded_files:
+			back_name="./"+back_uploaded_files.name
+			with open(back_name, "wb") as file:
+				file.write(uploaded_files.getvalue())
 		for uploaded_file in uploaded_files:
 				if multiple:
 					
@@ -45,15 +57,32 @@ if on.toggle('Image to PDF feature'):
 						
 						st.session_state["img"].append((name))
 		xxx=0
-		for x in st.session_state["img"]:
-			im = Image.open(x).size[0]
-			xxx=im+xxx
-		xxx=xxx//len(st.session_state["img"])
-		
-		for x in st.session_state["img"]:
-			im = Image.open(x)
-			new=im.resize((xxx, im.size[1]))
-			new.save(x)
+		if back_uploaded_files:
+			for x in st.session_state["img"]:
+				im = Image.open(x).size[0]
+				xxx=im+xxx
+			xxx=xxx//len(st.session_state["img"])
+			for x in st.session_state["img"]:
+				im = Image.open(x)
+				back_ground= Image.open(back_name)
+				new=im.resize((xxx, im.size[1]))
+				new.save(x)
+				if xxx>im.size[1]:
+					back_resize=back_ground.resize(im.size[1],im.size[1])
+					new=Image.Image.paste(new, back_resize, ((xxx-im.size[1])//2, 0))
+				else:
+					back_resize=back_ground.resize(xxx,xxx)
+					new=Image.Image.paste(new, back_resize, (0, (im.size[1]-xxx)//2))
+				new.save(x)
+		else:
+			for x in st.session_state["img"]:
+				im = Image.open(x).size[0]
+				xxx=im+xxx
+			xxx=xxx//len(st.session_state["img"])
+			for x in st.session_state["img"]:
+				im = Image.open(x)
+				new=im.resize((xxx, im.size[1]))
+				new.save(x)
 		file = open(pdf_path, "wb")
 		file.write(img2pdf.convert(st.session_state["img"]))
 		file.close()
