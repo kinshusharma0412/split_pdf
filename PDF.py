@@ -37,6 +37,8 @@ if on:
 		file.write(img2pdf.convert(st.session_state["img"]))
 		file.close()
 		with open(pdf_path, "rb") as file:
-			pq.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream")
+			if st.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):
+				submit_button.empty()
+		
 					
 		
