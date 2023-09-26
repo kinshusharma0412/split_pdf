@@ -29,10 +29,10 @@ if 'dow' not in st.session_state:
 	
 if on.toggle('Image to PDF feature'):
 	st.write('Activate Image to PDF feature')
+	tm=st.empty()
 	place_holder=st.empty()
+	
 	with place_holder.form(key="form1"):
-		tm=st.empty()
-		
 		if tm.toggle('Add Background image to PDF'):
 			back_uploaded_files = st.file_uploader("Choose a background image file (remember i will convert your image to square image)", accept_multiple_files=False)
 		multiple=st.toggle('Do you want to same image comes multiple times in pdf if you upload it multiple times')
