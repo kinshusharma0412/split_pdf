@@ -98,8 +98,12 @@ elif onn.toggle('PDF to Excle feature'):
 			
 	if submit_button.form_submit_button(label="Submit your choice"):
 		name="./"+uploaded_files.name
+		sheet_names = excel_file.sheet_names
 		
-		df = pd.read_excel(name)
+		
+		df = pd.read_excel(sheet_name,sheet_name=sheet_names)
+			
+		
 		df.to_html(name[:-5]+".html")
 		pdfkit.from_file(name[:-5]+".html", name[:-5]+".pdf")
 		
