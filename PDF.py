@@ -4,6 +4,7 @@ import streamlit as st
 from PIL import Image
 import glob,img2pdf
 #from PyPDF2 import PdfReader, PdfWriter, PageObject
+from random import randint
 
 on = st.empty()
 pdf_path="./@Polls_Quiz.pdf"
@@ -20,7 +21,7 @@ if on.toggle('Image to PDF feature'):
 	with place_holder.form(key="form"):
 		multiple = st.empty()
 		multiple.toggle('Do you want to same image comes multiple times in pdf if you upload it multiple times')
-		uploaded_files = st.file_uploader("Choose a image file (multiple files are accepted)", accept_multiple_files=True)
+		uploaded_files = st.file_uploader("Choose a image file (multiple files are accepted)", accept_multiple_files=True,key=str(randint(1000, 100000000)))
 		submit_button = st.empty()
 	if submit_button.form_submit_button(label="Submit your choice"):
 		for uploaded_file in uploaded_files:
