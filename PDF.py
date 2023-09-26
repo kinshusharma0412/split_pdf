@@ -70,23 +70,11 @@ elif onn.toggle('PDF Spliter feature'):
 			file = open(name[2:-4]+" %s.pdf" % (i+1),"rb")
 			st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" % (i+1),mime="application/octet-stream")
 		output = PdfWriter()
-		for i in range((len(inputpdf.pages)//pagen)*pagen,len(inputpdf.pages)):
-			output.add_page(inputpdf.pages[i])
-		with open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1), "wb") as outputStream:
-			output.write(outputStream)
-		file = open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1),"rb")
-		st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" %str(len(inputpdf.pages)//pagen+1),mime="application/octet-stream")
-				
-				
-			
-			
-			
-			
-			
-				
-						
-						
-		
-		
+		if (len(inputpdf.pages)//pagen)*pagen!=len(inputpdf.pages)):
+			for i in range((len(inputpdf.pages)//pagen)*pagen,len(inputpdf.pages)):
+				output.add_page(inputpdf.pages[i])
+			with open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1), "wb") as outputStream:
+				output.write(outputStream)
+			file = open(name[2:-4]+" %s.pdf" % ((len(inputpdf.pages)//pagen)+1),"rb")
+			st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-4]+" %s.pdf" %str(len(inputpdf.pages)//pagen+1),mime="application/octet-stream")
 					
-		
