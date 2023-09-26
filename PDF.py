@@ -99,7 +99,9 @@ elif onn.toggle('PDF to Excle feature'):
 	if submit_button.form_submit_button(label="Submit your choice"):
 		name="./"+uploaded_files.name
 		sheet_names = pd.ExcelFile(name).sheet_names
-		df = pd.read_excel(name,sheet_name=sheet_names)
+		df = pd.read_excel(name)
+		for x in sheet_names:
+			df = xl.parse(x)
 			
 		
 		df.to_html(name[:-5]+".html")
