@@ -6,3 +6,4 @@ img2pdf
 tabula-py
 pdfkit
 pandas
+openpyxl
