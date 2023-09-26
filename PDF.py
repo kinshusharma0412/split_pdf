@@ -53,10 +53,10 @@ elif onn.toggle('PDF Spliter feature'):
 	uploaded_files = st.file_uploader("Choose a PDF file (multiple files are not accepted)", accept_multiple_files=False)
 	line=st.empty()
 	submit_button = st.empty()
-	for uploaded_file in uploaded_files:
-		name="./"+uploaded_file.name
+	if uploaded_files:
+		name="./"+uploaded_files.name
 		with open(name, "wb") as file:
-			file.write(uploaded_file.getvalue())
+			file.write(uploaded_files.getvalue())
 	inputpdf = PdfReader(open("document.pdf", "rb"))
 	pagen = st.slider('How old are you?', 1, inputpdf.pages, inputpdf.pages//5)
 	if submit_button.form_submit_button(label="Submit your choice"):
