@@ -17,7 +17,7 @@ if 'dow' not in st.session_state:
 if on.toggle('Image to PDF feature'):
 	st.write('Activate Image to PDF feature')
 	place_holder=st.empty()
-	with place_holder.st.form(key="form"):
+	with place_holder.form(key="form"):
 		multiple = st.empty()
 		multiple.toggle('Do you want to same image comes multiple times in pdf if you upload it multiple times')
 		uploaded_files = st.file_uploader("Choose a image file (multiple files are accepted)", accept_multiple_files=True)
