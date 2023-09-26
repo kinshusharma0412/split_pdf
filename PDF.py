@@ -47,14 +47,14 @@ if on.toggle('Image to PDF feature'):
 		xxx=0
 		for x in st.session_state["img"]:
 			im = Image.open(x).size[0]
-			st.write(str(im))
+			
 			if im>xxx:
 				xxx=im
-		st.write(str(im))
+		
 		for x in st.session_state["img"]:
 			im = Image.open(x)
-			im.resize((xxx, im.size[1]))
-			im.save(x)
+			new=im.resize((xxx, im.size[1]))
+			new.save(x)
 		file = open(pdf_path, "wb")
 		file.write(img2pdf.convert(st.session_state["img"]))
 		file.close()
