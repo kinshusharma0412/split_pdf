@@ -3,7 +3,7 @@ from fpdf import FPDF
 import streamlit as st
 from PIL import Image
 import glob,img2pdf
-from PyPDF2 import PdfWriter, PdfReader,PdfMerger, PdfFileReader
+from PyPDF2 import PdfWriter, PdfReader,PdfMerger, PdfReader
 from random import randint
 import tabula
 import pdfkit
@@ -109,7 +109,7 @@ elif onn.toggle('PDF to Excle feature'):
 		merger = PdfMerger()
 		for filename in dff:
 			pdfFile = open(filename, 'rb')
-			pdfReader = PdfFileReader(pdfFile)
+			pdfReader = PdfReader(pdfFile)
 			merger.append(pdfReader)
 		merger.write(name[:-5]+".pdf")
 		pdfFile.close()
