@@ -64,7 +64,7 @@ elif onn.toggle('PDF Spliter feature'):
 		for i in range((pagen)):
 			output = PdfWriter()
 			for x in range((len(inputpdf.pages)//pagen)):
-				output.add_page(len(inputpdf.pages)[x*i])
+				output.add_page(inputpdf.pages[x*i])
 			with open(name[2:-4]+" %s.pdf" % (i+1), "wb") as outputStream:
 				output.write(outputStream)
 			file = open(name[2:-4]+" %s.pdf" % (i+1),"rb")
