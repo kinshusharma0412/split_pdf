@@ -75,6 +75,7 @@ if on.toggle('Image to PDF feature'):
 				new.save(x)
 				if xxx>im.size[1]:
 					back_resize=back_ground.resize((im.size[1],im.size[1]))
+					back_resize.putalpha(127)
 					back_resize.save(back_name)
 					im = Image.open(x)
 					back_ground= Image.open(back_name)
@@ -84,6 +85,7 @@ if on.toggle('Image to PDF feature'):
 					
 				else:
 					back_resize=back_ground.resize((xxx,xxx))
+					back_resize.putalpha(127)
 					back_resize.save(back_name)
 					im = Image.open(x)
 					back_ground= Image.open(back_name)
