@@ -109,15 +109,10 @@ elif onn.toggle('PDF to Excle feature'):
 			pdfkit.from_file(name[:-5]+".html", name[:-5]+x+".pdf")
 			dff.append(name[:-5]+x+".pdf")
 		merger = PdfMerger()
-		x=0
 		for filename in dff:
 			pdfFile = open(filename, 'rb')
 			pdfReader = PdfReader(pdfFile)
 			merger.append(pdfReader)
-			if x%10==0:
-				btn.write("{:.2f} %".format((x+1)*100/len(dff)))
-				time.sleep(.5)
-			x+=1
 		merger.write(name[:-5]+".pdf")
 		pdfFile.close()
 		file = open(name[:-5]+".pdf","rb")
