@@ -7,8 +7,10 @@ from PyPDF2 import PdfWriter, PdfReader
 from random import randint
 import tabula
 import pdfkit
-on = st.empty()
 onn= st.empty()
+on = st.empty()
+
+onon= st.empty()
 pdf_path="./@Polls_Quiz.pdf"
 
 if 'img' not in st.session_state:
@@ -47,7 +49,7 @@ if on.toggle('Image to PDF feature'):
 				on.empty()
 				#on.toggle('Image to PDF feature')
 				place_holder.empty()
-elif onn.toggle('PDF Spliter feature'):
+elif onon.toggle('PDF Spliter feature'):
 	st.write("This feature can split your PDF into multiple PDF")
 	place_holder=st.empty()
 	with place_holder.form(key="form2"):
