@@ -47,9 +47,8 @@ if on.toggle('Image to PDF feature'):
 		xxx=0
 		for x in st.session_state["img"]:
 			im = Image.open(x).size[0]
-			
-			if im>xxx:
-				xxx=im
+				xxx=im+xxx
+		xxx=xxx//len(st.session_state["img"])
 		
 		for x in st.session_state["img"]:
 			im = Image.open(x)
