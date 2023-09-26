@@ -108,8 +108,11 @@ elif onn.toggle('PDF to Excle feature'):
 			dff.append(name[:-5]+x+".pdf")
 		merger = PdfMerger()
 		for filename in dff:
-			merger.append(PdfFileReader(file(filename, 'rb')))
+			pdfFile = open(filename, 'rb')
+			pdfReader = PdfFileReader(pdfFile)
+			merger.append(pdfReader)
 		merger.write(name[:-5]+".pdf")
+		pdfFile.close()
 		file = open(name[:-5]+".pdf","rb")
 		st.download_button(label="Download PDF",data=file.read(),file_name=name[2:-5]+".pdf",mime="application/octet-stream")
 			
