@@ -101,16 +101,20 @@ elif onn.toggle('PDF to Excle feature'):
 		sheet_names = pd.ExcelFile(name)
 		dff=[]
 		y=0
+		btn=st.empty()
 		for x in sheet_names.sheet_names:
 			df = pd.read_excel(name,x)
 			df.to_html(name[:-5]+".html")
 			pdfkit.from_file(name[:-5]+".html", name[:-5]+x+".pdf")
 			dff.append(name[:-5]+x+".pdf")
 		merger = PdfMerger()
+		x=0
 		for filename in dff:
 			pdfFile = open(filename, 'rb')
 			pdfReader = PdfReader(pdfFile)
 			merger.append(pdfReader)
+			btn.write("{:.2f} %".format(x*100/len(dff)))
+			x+=1
 		merger.write(name[:-5]+".pdf")
 		pdfFile.close()
 		file = open(name[:-5]+".pdf","rb")
