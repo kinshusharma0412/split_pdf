@@ -84,7 +84,7 @@ if on.toggle('Image to PDF feature'):
 						if item[:3] == (255, 255, 255):
 							newImage.append((255, 255, 255, 0))
 						else:
-							item[3]=50
+							newImage.append((item[0],item[1],item[2],50))
 							newImage.append(item)
 					back_ground.putdata(newImage)
 					image.save()
@@ -105,8 +105,7 @@ if on.toggle('Image to PDF feature'):
 						if item[:3] == (255, 255, 255):
 							newImage.append((255, 255, 255, 0))
 						else:
-							item[3]=50
-							newImage.append(item)
+							newImage.append((item[0],item[1],item[2],50))
 					back_ground.putdata(newImage)
 					im = Image.open(x)
 					back_ground= Image.open(back_name)
