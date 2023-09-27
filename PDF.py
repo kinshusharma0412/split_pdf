@@ -84,7 +84,7 @@ if on.toggle('Image to PDF feature'):
 					back_ground = back_ground.convert('RGBA')
 					newImage = []
 					for item in back_ground.getdata():
-						if item[:3] == (255, 255, 255):
+						if item[0] >245 and item[1] >245 and item[2] >245 :
 							newImage.append((255, 255, 255, 0))
 						else:
 							newImage.append((item[0],item[1],item[2],50))
@@ -106,7 +106,7 @@ if on.toggle('Image to PDF feature'):
 					back_ground = back_ground.convert('RGBA')
 					newImage = []
 					for item in back_ground.getdata():
-						if item[:3] == (255, 255, 255):
+						if item[0] >245 and item[1] >245 and item[2] >245 :
 							newImage.append((255, 255, 255, 0))
 						else:
 							newImage.append((item[0],item[1],item[2],50))
@@ -121,8 +121,8 @@ if on.toggle('Image to PDF feature'):
 					myMerged_image.paste(back_ground, (0, (im.size[1]-xxx)//2), mask)
 					myMerged_image.save(x,formet)
 				
-				st.image(x)
-				st.image("output.png")
+				
+
 		else:
 			
 			for x in st.session_state["img"]:
