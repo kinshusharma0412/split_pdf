@@ -86,9 +86,9 @@ if on.toggle('Image to PDF feature'):
 						else:
 							newImage.append((item[0],item[1],item[2],50))
 					back_ground.putdata(newImage)
-					back_ground.save(back_name)
+					back_ground.save(back_name+".png")
 					im = Image.open(x)
-					back_ground= Image.open(back_name)
+					back_ground= Image.open(back_name+".png")
 					
 					Image1copy = im.copy()
 					Image2copy = back_ground.copy()
@@ -107,10 +107,10 @@ if on.toggle('Image to PDF feature'):
 						else:
 							newImage.append((item[0],item[1],item[2],50))
 					back_ground.putdata(newImage)
-					back_ground.save(back_name)
+					back_ground.save(back_name+".png")
 					im = Image.open(x)
 					back_ground= Image.open(back_name)
-					back_ground.putalpha(30)
+					
 					Image1copy = im.copy()
 					Image2copy = back_ground.copy()
 					Image1copy.paste(Image2copy, (0, (im.size[1]-xxx)//2))
