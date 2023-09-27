@@ -93,9 +93,7 @@ if on.toggle('Image to PDF feature'):
 					myMerged_image.paste(im, (0,0))
 					_, _, _, mask = back_ground.split()
 					myMerged_image.paste(back_ground, ((xxx-im.size[1])//2,0), mask)
-					myMerged_image.save(x)
-					
-					
+					myMerged_image.save(x,im.format)
 				else:
 					back_resize=back_ground.resize((xxx,xxx))
 					back_resize.save(back_name+".png")
@@ -117,7 +115,8 @@ if on.toggle('Image to PDF feature'):
 					myMerged_image.paste(im, (0,0))
 					_, _, _, mask = back_ground.split()
 					myMerged_image.paste(back_ground, (0, (im.size[1]-xxx)//2), mask)
-					myMerged_image.save(x)
+					myMerged_image.save(x,im.format)
+				
 				st.image(x)
 				st.image("output.png")
 		else:
