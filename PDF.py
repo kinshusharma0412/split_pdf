@@ -109,7 +109,7 @@ if on.toggle('Image to PDF feature'):
 					back_ground.putdata(newImage)
 					back_ground.save(back_name+".png")
 					im = Image.open(x)
-					back_ground= Image.open(back_name)
+					back_ground= Image.open(back_name+".png")
 					
 					Image1copy = im.copy()
 					Image2copy = back_ground.copy()
