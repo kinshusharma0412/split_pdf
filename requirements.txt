@@ -10,3 +10,4 @@ openpyxl
 reportlab
 PDFNetPython3
 puthon3
+pip3
