@@ -1,4 +1,4 @@
-limport os,time
+import os,time
 from fpdf import FPDF
 import streamlit as st
 from PIL import Image
