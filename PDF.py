@@ -32,9 +32,11 @@ if on.toggle('Image to PDF feature'):
 	tm=st.empty()
 	place_holder=st.empty()
 	st.session_state.back = False
+	opaque=0
 	with place_holder.form(key="form1"):
 		if tm.toggle('Add Background image to PDF'):
 			back_uploaded_files = st.file_uploader("Choose a background image file (remember i will convert your image to square image)", accept_multiple_files=False)
+			opaque = line.slider('Select background image opacity', 0, 255, 100)
 			if back_uploaded_files:
 				st.session_state.back = True
 			
@@ -44,9 +46,21 @@ if on.toggle('Image to PDF feature'):
 	if submit_button.form_submit_button(label="Submit your choice"):
 		 
 		if st.session_state.back:
+			back_ground= Image.open(back_name)
+			back_ground = back_ground.convert('RGBA')
+			newImage = []
+			for item in back_ground.getdata():
+				if ( item[0] >245 and item[1] >245 and item[2] >245 ) or ( item[0] <5 and item[1] <5 and item[2] <5 ):
+					newImage.append((255, 255, 255, 0))
+				else:
+					newImage.append((item[0],item[1],item[2],opaque))
+			back_ground.putdata(newImage)
+			back_ground.save('output1.png')
+			st.image('output1.png')
 			back_name="./"+back_uploaded_files.name+".png"
 			with open(back_name, "wb") as file:
 				file.write(back_uploaded_files.getvalue())
+			
 		for uploaded_file in uploaded_files:
 				if multiple:
 					
@@ -71,7 +85,7 @@ if on.toggle('Image to PDF feature'):
 			for x in st.session_state["img"]:
 				im = Image.open(x)
 				formet=im.format
-				opaque=80
+				opaque=opaque
 				back_ground= Image.open(back_name)
 				new=im.resize((xxx, im.size[1]))
 				new.save(x)
