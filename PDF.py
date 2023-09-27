@@ -15,7 +15,7 @@ from PDFNetPython3 import PDFDoc, Optimizer, SDFDoc
 
 import sys
 st.write(sys.path)
-os.environ["YOUR_PDFTRON_LICENSE_KEY"]="demo:1695835217274:7c183fec03000000008c0a8a3abd11c6896a9c7310aa9139d5d1481dd0" 
+os.system("python3 -m pip install apryse-sdk --extra-index-url=https://pypi.apryse.com" )
 on = st.empty()
 bttn=st.empty()
 onn= st.empty()
