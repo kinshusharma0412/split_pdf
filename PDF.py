@@ -11,13 +11,14 @@ import pandas as pd
 import site
 site.addsitedir(r"...pathToPDFTron\PDFNetWrappersWin32\PDFNetC\Lib")
 from PDFNetPython3 import PDFDoc, Optimizer, SDFDoc
+import sys
+st.write(sys.path)
 on = st.empty()
 bttn=st.empty()
 onn= st.empty()
 onon= st.empty()
 onn1= st.empty()
 pdf_path="./@Polls_Quiz.pdf"
-
 
 if 'img' not in st.session_state:
 	st.session_state.img = []
