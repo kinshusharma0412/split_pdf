@@ -33,6 +33,7 @@ if on.toggle('Image to PDF feature'):
 	place_holder=st.empty()
 	st.session_state.back = False
 	opaque=0
+	new_list_name=[]
 	with place_holder.form(key="form1"):
 		if tm.toggle('Add Background image to PDF'):
 			back_uploaded_files = st.file_uploader("Choose a background image file (remember i will convert your image to square image)", accept_multiple_files=False)
@@ -44,6 +45,7 @@ if on.toggle('Image to PDF feature'):
 		multiple=st.toggle('Do you want to same image comes multiple times in pdf if you upload it multiple times')
 		uploaded_files = st.file_uploader("Choose a image file (multiple files are accepted)", accept_multiple_files=True)
 		submit_button = st.empty()
+		
 	if submit_button.form_submit_button(label="Submit your choice"):
 		 
 		if st.session_state.back:
@@ -127,7 +129,9 @@ if on.toggle('Image to PDF feature'):
 					myMerged_image.paste(im, (0,0))
 					_, _, _, mask = back_ground.split()
 					myMerged_image.paste(back_ground, (0, (im.size[1]-xxx)//2), mask)
-					myMerged_image.save(x,formet)
+					myMerged_image.save(x+".png",formet)
+				if x+".png" not in new_list_name:
+					new_list_name=append(x+".png")
 				st.image(x)
 				
 				
@@ -139,7 +143,10 @@ if on.toggle('Image to PDF feature'):
 				new=im.resize((xxx, im.size[1]))
 				new.save(x)
 		file = open(pdf_path, "wb")
-		file.write(img2pdf.convert(st.session_state["img"]))
+		if len(new_list_name)==0:
+			file.write(img2pdf.convert(st.session_state["img"]))
+		else:
+			file.write(img2pdf.convert(new_list_name))
 		file.close()
 		with open(pdf_path, "rb") as file:
 			if st.download_button(label="Download PDF",data=file,file_name="@Polls_Quiz.pdf",mime="application/octet-stream"):
