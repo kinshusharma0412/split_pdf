@@ -44,13 +44,13 @@ if on.toggle('Image to PDF feature'):
 	if submit_button.form_submit_button(label="Submit your choice"):
 		 
 		if st.session_state.back:
-			back_name="./"+back_uploaded_files.name
+			back_name="./"+back_uploaded_files.name+".png"
 			with open(back_name, "wb") as file:
 				file.write(back_uploaded_files.getvalue())
 		for uploaded_file in uploaded_files:
 				if multiple:
 					
-					name="./"+uploaded_file.name
+					name="./"+uploaded_file.name+".png"
 					with open(name, "wb") as file:
 						file.write(uploaded_file.getvalue())
 					st.session_state["img"].append((name))
@@ -73,13 +73,14 @@ if on.toggle('Image to PDF feature'):
 				formet=im.format
 				back_ground= Image.open(back_name)
 				new=im.resize((xxx, im.size[1]))
-				new.save(x+".png")
+				new.save(x)
+				formet=im.format
 				
 				if xxx>im.size[1]:
 					back_resize=back_ground.resize((im.size[1],im.size[1]))
 					
-					back_resize.save(back_name+".png")
-					back_ground= Image.open(back_name+".png")
+					back_resize.save(back_name)
+					back_ground= Image.open(back_name)
 					back_ground = back_ground.convert('RGBA')
 					newImage = []
 					for item in back_ground.getdata():
@@ -89,7 +90,7 @@ if on.toggle('Image to PDF feature'):
 							newImage.append((item[0],item[1],item[2],50))
 					back_ground.putdata(newImage)
 					back_ground.save('output.png')
-					im = Image.open(x+".png")
+					im = Image.open(x)
 					back_ground= Image.open("output.png")
 					myMerged_image = Image.new("RGBA", im.size)
 					myMerged_image.paste(im, (0,0))
@@ -98,9 +99,9 @@ if on.toggle('Image to PDF feature'):
 					myMerged_image.save(x,formet)
 				else:
 					back_resize=back_ground.resize((xxx,xxx))
-					back_resize.save(back_name+".png")
+					back_resize.save(back_name)
 					
-					back_ground= Image.open(back_name+".png")
+					back_ground= Image.open(back_name)
 					
 					back_ground = back_ground.convert('RGBA')
 					newImage = []
@@ -111,7 +112,7 @@ if on.toggle('Image to PDF feature'):
 							newImage.append((item[0],item[1],item[2],50))
 					back_ground.putdata(newImage)
 					back_ground.save('output.png')
-					im = Image.open(x+".png")
+					im = Image.open(x)
 					back_ground= Image.open("output.png")
 					
 					myMerged_image = Image.new("RGBA", im.size)
