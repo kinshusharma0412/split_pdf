@@ -11,3 +11,4 @@ reportlab
 PDFNetPython3
 python3
 pip3
+python3 -m pip install apryse-sdk --extra-index-url=https://pypi.apryse.com
