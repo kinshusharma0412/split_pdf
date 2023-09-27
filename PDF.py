@@ -13,9 +13,8 @@ from PDFNetPython3.PDFNetPython import PDFDoc, Optimizer, SDFDoc, PDFNet
 on = st.empty()
 bttn=st.empty()
 onn= st.empty()
-onn1= st.empty()
-
 onon= st.empty()
+onn1= st.empty()
 pdf_path="./@Polls_Quiz.pdf"
 
 def get_size_format(b, factor=1024, suffix="B"):
@@ -46,7 +45,7 @@ def compress_file(input_file: str, output_file: str):
         doc.Save(output_file, SDFDoc.e_linearized)
         doc.Close()
     except Exception as e:
-        print("Error compress_file=", e)
+        st.write("Error compress_file=", e)
         doc.Close()
         return False
     compressed_size = os.path.getsize(output_file)
