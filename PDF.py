@@ -278,6 +278,7 @@ elif onn1.toggle('PDF compressor feature un-complite now'):
 			
 	if submit_button.form_submit_button(label="Submit your choice"):
 		name="./"+uploaded_files.name
+		st.write(sys.argv)
 		input_file = sys.argv[1]
 		output_file = sys.argv[2]
 		compress_file(name, name[:4]+" compress file.pdf")
@@ -287,5 +288,4 @@ elif onn1.toggle('PDF compressor feature un-complite now'):
     
 		
 		
-
 			
