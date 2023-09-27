@@ -9,4 +9,4 @@ pandas
 openpyxl
 reportlab
 PDFNetPython3
-apryse_sdk
+
