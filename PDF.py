@@ -9,6 +9,7 @@ import tabula
 import pdfkit
 import pandas as pd
 import site,glob
+from apryse_sdk import *
 site.addsitedir(r"...pathToPDFTron\PDFNetWrappersWin32\PDFNetC\Lib")
 from PDFNetPython3 import PDFDoc, Optimizer, SDFDoc
 
@@ -239,6 +240,8 @@ elif onn1.toggle('PDF compressor feature un-complite now'):
 			
 	if submit_button.form_submit_button(label="Submit your choice"):
 		name="./"+uploaded_files.name
+		PDFNet.Initialize("demo:1695835217274:7c183fec03000000008c0a8a3abd11c6896a9c7310aa9139d5d1481dd0")
+		
 		doc = PDFDoc(name)
 		doc.InitSecurityHandler()
 		Optimizer.Optimize(doc)
@@ -250,5 +253,4 @@ elif onn1.toggle('PDF compressor feature un-complite now'):
     
 		
 		
-
 			
