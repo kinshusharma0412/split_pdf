@@ -70,9 +70,11 @@ if on.toggle('Image to PDF feature'):
 		if st.session_state.back:
 			for x in st.session_state["img"]:
 				im = Image.open(x)
+				formet=im.format
 				back_ground= Image.open(back_name)
 				new=im.resize((xxx, im.size[1]))
-				new.save(x)
+				new.save(x+".png")
+				
 				if xxx>im.size[1]:
 					back_resize=back_ground.resize((im.size[1],im.size[1]))
 					
@@ -87,16 +89,17 @@ if on.toggle('Image to PDF feature'):
 							newImage.append((item[0],item[1],item[2],50))
 					back_ground.putdata(newImage)
 					back_ground.save('output.png')
-					im = Image.open(x)
+					im = Image.open(x+".png")
 					back_ground= Image.open("output.png")
 					myMerged_image = Image.new("RGBA", im.size)
 					myMerged_image.paste(im, (0,0))
 					_, _, _, mask = back_ground.split()
 					myMerged_image.paste(back_ground, ((xxx-im.size[1])//2,0), mask)
-					myMerged_image.save(x,im.format)
+					myMerged_image.save(x,formet)
 				else:
 					back_resize=back_ground.resize((xxx,xxx))
 					back_resize.save(back_name+".png")
+					
 					back_ground= Image.open(back_name+".png")
 					
 					back_ground = back_ground.convert('RGBA')
@@ -108,14 +111,14 @@ if on.toggle('Image to PDF feature'):
 							newImage.append((item[0],item[1],item[2],50))
 					back_ground.putdata(newImage)
 					back_ground.save('output.png')
-					im = Image.open(x)
+					im = Image.open(x+".png")
 					back_ground= Image.open("output.png")
 					
 					myMerged_image = Image.new("RGBA", im.size)
 					myMerged_image.paste(im, (0,0))
 					_, _, _, mask = back_ground.split()
 					myMerged_image.paste(back_ground, (0, (im.size[1]-xxx)//2), mask)
-					myMerged_image.save(x,im.format)
+					myMerged_image.save(x,formet)
 				
 				st.image(x)
 				st.image("output.png")
