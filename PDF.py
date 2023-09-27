@@ -1,4 +1,4 @@
-import os,time
+limport os,time
 from fpdf import FPDF
 import streamlit as st
 from PIL import Image
@@ -8,8 +8,9 @@ from random import randint
 import tabula
 import pdfkit
 import pandas as pd
-import sys
-from PDFNetPython3.PDFNetPython import PDFDoc, Optimizer, SDFDoc, PDFNet
+import site
+site.addsitedir(r"...pathToPDFTron\PDFNetWrappersWin32\PDFNetC\Lib")
+from PDFNetPython3 import PDFDoc, Optimizer, SDFDoc
 on = st.empty()
 bttn=st.empty()
 onn= st.empty()
@@ -17,49 +18,7 @@ onon= st.empty()
 onn1= st.empty()
 pdf_path="./@Polls_Quiz.pdf"
 
-def get_size_format(b, factor=1024, suffix="B"):
-    """
-    Scale bytes to its proper byte format
-    e.g:
-        1253656 => '1.20MB'
-        1253656678 => '1.17GB'
-    """
-    for unit in ["", "K", "M", "G", "T", "P", "E", "Z"]:
-        if b < factor:
-            return f"{b:.2f}{unit}{suffix}"
-        b /= factor
-    return f"{b:.2f}Y{suffix}"
-def compress_file(input_file: str, output_file: str):
-    """Compress PDF file"""
-    if not output_file:
-        output_file = input_file
-    initial_size = os.path.getsize(input_file)
-    try:
-        # Initialize the library
-        PDFNet.Initialize()
-        doc = PDFDoc(input_file)
-        # Optimize PDF with the default settings
-        doc.InitSecurityHandler()
-        # Reduce PDF size by removing redundant information and compressing data streams
-        Optimizer.Optimize(doc)
-        doc.Save(output_file, SDFDoc.e_linearized)
-        doc.Close()
-    except Exception as e:
-        st.write("Error compress_file=", e)
-        doc.Close()
-        return False
-    compressed_size = os.path.getsize(output_file)
-    ratio = 1 - (compressed_size / initial_size)
-    summary = {
-        "Input File": input_file, "Initial Size": get_size_format(initial_size),
-        "Output File": output_file, f"Compressed Size": get_size_format(compressed_size),
-        "Compression Ratio": "{0:.3%}.".format(ratio)
-    }
-    # Printing Summary
-    
-    st.write("\n".join("{}:{}".format(i, j) for i, j in summary.items()))
-    return True
-
+l
 if 'img' not in st.session_state:
 	st.session_state.img = []
 if 'clicked' not in st.session_state:
@@ -277,11 +236,13 @@ elif onn1.toggle('PDF compressor feature un-complite now'):
 			
 	if submit_button.form_submit_button(label="Submit your choice"):
 		name="./"+uploaded_files.name
-		
-		
-		compress_file(name, name[:4]+" compress file.pdf")
-		file = open(name[:4]+" compress file.pdf","rb")
-		st.download_button(label="Download PDF",data=file.read(),file_name=name[:4]+" compress file.pdf",mime="application/octet-stream")
+		doc = PDFDoc(name)
+		doc.InitSecurityHandler()
+		Optimizer.Optimize(doc)
+		doc.Save('compressed_'+name, SDFDoc.e_linearized)
+		files.download('compressed_'+name)
+		doc.Close()
+		st.download_button(label="Download your compress PDF",data=file.read(),file_name='compressed '+name,mime="application/octet-stream")
 		
     
 		
