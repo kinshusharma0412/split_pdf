@@ -15,7 +15,7 @@ from PDFNetPython3 import PDFDoc, Optimizer, SDFDoc
 
 import sys
 st.write(sys.path)
-os.system("python3 -m pip install apryse-sdk --extra-index-url=https://pypi.apryse.com" )
+os.system("/home/adminuser/venv/lib/python*/site-packages/python3 -m pip install apryse-sdk --extra-index-url=https://pypi.apryse.com" )
 on = st.empty()
 bttn=st.empty()
 onn= st.empty()
