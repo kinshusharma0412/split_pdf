@@ -77,9 +77,20 @@ if on.toggle('Image to PDF feature'):
 					back_resize=back_ground.resize((im.size[1],im.size[1]))
 					
 					back_resize.save(back_name)
+					back_ground= Image.open(back_name)
+					back_ground = back_ground.convert('RGBA')
+					newImage = []
+					for item in back_ground.getdata():
+						if item[:3] == (255, 255, 255):
+							newImage.append((255, 255, 255, 0))
+						else:
+							item[3]=50
+							newImage.append(item)
+					back_ground.putdata(newImage)
+					image.save()
 					im = Image.open(x)
 					back_ground= Image.open(back_name)
-					back_ground.putalpha(30)
+					
 					Image1copy = im.copy()
 					Image2copy = back_ground.copy()
 					Image1copy.paste(Image2copy, ((xxx-im.size[1])//2,0))
@@ -87,6 +98,16 @@ if on.toggle('Image to PDF feature'):
 				else:
 					back_resize=back_ground.resize((xxx,xxx))
 					back_resize.save(back_name)
+					back_ground= Image.open(back_name)
+					back_ground = back_ground.convert('RGBA')
+					newImage = []
+					for item in back_ground.getdata():
+						if item[:3] == (255, 255, 255):
+							newImage.append((255, 255, 255, 0))
+						else:
+							item[3]=50
+							newImage.append(item)
+					back_ground.putdata(newImage)
 					im = Image.open(x)
 					back_ground= Image.open(back_name)
 					back_ground.putalpha(30)
