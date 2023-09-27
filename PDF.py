@@ -36,6 +36,7 @@ if on.toggle('Image to PDF feature'):
 	with place_holder.form(key="form1"):
 		if tm.toggle('Add Background image to PDF'):
 			back_uploaded_files = st.file_uploader("Choose a background image file (remember i will convert your image to square image)", accept_multiple_files=False)
+			line=st.empty()
 			opaque = line.slider('Select background image opacity', 0, 255, 100)
 			if back_uploaded_files:
 				st.session_state.back = True
