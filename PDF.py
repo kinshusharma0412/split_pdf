@@ -14,7 +14,7 @@ from PDFNetPython3 import PDFDoc, Optimizer, SDFDoc
 for name in glob.glob("/home/adminuser/venv/lib/python*/site-packages/PDFNetPython3"):
     st.write(name)
 import sys
-#st.write(sys.path)
+st.write(sys.path)
 
 on = st.empty()
 bttn=st.empty()
