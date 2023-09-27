@@ -89,10 +89,11 @@ if on.toggle('Image to PDF feature'):
 					back_ground.save('output.png')
 					im = Image.open(x)
 					back_ground= Image.open("output.png")
-					
-					Image1copy = im.copy()
-					Image2copy = back_ground.copy()
-					Image1copy.paste(Image2copy, ((xxx-im.size[1])//2,0))
+					myMerged_image = Image.new("RGBA", im.size)
+					myMerged_image.paste(im, (0,0))
+					_, _, _, mask = back_ground.split()
+					myMerged_image.paste(back_ground, ((xxx-im.size[1])//2), 0), mask)
+					myMerged_image.save(x)
 					
 					
 				else:
@@ -112,8 +113,11 @@ if on.toggle('Image to PDF feature'):
 					im = Image.open(x)
 					back_ground= Image.open("output.png")
 					
-					Image1copy = im.copy()
-					Image2copy = back_ground.copy()
+					myMerged_image = Image.new("RGBA", im.size)
+					myMerged_image.paste(im, (0,0))
+					_, _, _, mask = back_ground.split()
+					myMerged_image.paste(back_ground, (0, (im.size[1]-xxx)//2)), mask)
+					myMerged_image.save(x)
 					Image1copy.paste(Image2copy, (0, (im.size[1]-xxx)//2))
 					
 				Image1copy.save(x)
