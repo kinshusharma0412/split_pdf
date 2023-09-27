@@ -11,6 +11,9 @@ import pandas as pd
 import site,glob
 site.addsitedir(r"...pathToPDFTron\PDFNetWrappersWin32\PDFNetC\Lib")
 from PDFNetPython3 import PDFDoc, Optimizer, SDFDoc
+st.write(os.system("""cd
+cd /home/adminuser/venv/lib/python3.9/site-packages/PDFNetPython3
+dir /b /s"""))
 for name in glob.glob("/home/adminuser/venv/lib/python3.9/site-packages/PDFNetPython3"):
     st.write(name)
 import sys
@@ -251,5 +254,4 @@ elif onn1.toggle('PDF compressor feature un-complite now'):
     
 		
 		
-
-	
+			
