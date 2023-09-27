@@ -131,7 +131,7 @@ if on.toggle('Image to PDF feature'):
 					myMerged_image.paste(back_ground, (0, (im.size[1]-xxx)//2), mask)
 					myMerged_image.save(x+".png",formet)
 				if x+".png" not in new_list_name:
-					new_list_name=append(x+".png")
+					new_list_name.append(x+".png")
 				st.image(x)
 				
 				
