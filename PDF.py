@@ -85,9 +85,9 @@ if on.toggle('Image to PDF feature'):
 							newImage.append((255, 255, 255, 0))
 						else:
 							newImage.append((item[0],item[1],item[2],50))
-						newImage.append(item)
+					newImage.append(item)
 					back_ground.putdata(newImage)
-					image.save()
+					back_ground.save(back_name)
 					im = Image.open(x)
 					back_ground= Image.open(back_name)
 					
@@ -106,7 +106,8 @@ if on.toggle('Image to PDF feature'):
 							newImage.append((255, 255, 255, 0))
 						else:
 							newImage.append((item[0],item[1],item[2],50))
-						back_ground.putdata(newImage)
+					back_ground.putdata(newImage)
+					back_ground.save(back_name)
 					im = Image.open(x)
 					back_ground= Image.open(back_name)
 					back_ground.putalpha(30)
