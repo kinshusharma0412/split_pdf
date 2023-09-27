@@ -8,11 +8,14 @@ from random import randint
 import tabula
 import pdfkit
 import pandas as pd
-import site
+import site,glob
 site.addsitedir(r"...pathToPDFTron\PDFNetWrappersWin32\PDFNetC\Lib")
 from PDFNetPython3 import PDFDoc, Optimizer, SDFDoc
+for name in glob.glob("/home/adminuser/venv/lib/python*/site-packages/PDFNetPython3"):
+    print(name)
 import sys
-st.write(sys.path)
+#st.write(sys.path)
+
 on = st.empty()
 bttn=st.empty()
 onn= st.empty()
@@ -248,4 +251,5 @@ elif onn1.toggle('PDF compressor feature un-complite now'):
     
 		
 		
-			
+
+													  
