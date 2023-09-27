@@ -74,7 +74,7 @@ if on.toggle('Image to PDF feature'):
 				back_ground= Image.open(back_name)
 				new=im.resize((xxx, im.size[1]))
 				new.save(x)
-				formet=im.format
+				formet="PNG"
 				
 				if xxx>im.size[1]:
 					back_resize=back_ground.resize((im.size[1],im.size[1]))
