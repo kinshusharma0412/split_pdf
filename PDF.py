@@ -50,17 +50,7 @@ if on.toggle('Image to PDF feature'):
 			back_name="./"+back_uploaded_files.name+".png"
 			with open(back_name, "wb") as file:
 				file.write(back_uploaded_files.getvalue())
-			back_ground= Image.open(back_name)
-			back_ground = back_ground.convert('RGBA')
-			newImage = []
-			for item in back_ground.getdata():
-				if ( item[0] >245 and item[1] >245 and item[2] >245 ) or ( item[0] <5 and item[1] <5 and item[2] <5 ):
-					newImage.append((255, 255, 255, 0))
-				else:
-					newImage.append((item[0],item[1],item[2],opaque))
-			back_ground.putdata(newImage)
-			back_ground.save('output1.png')
-			st.image('output1.png')
+			
 			
 			
 		for uploaded_file in uploaded_files:
@@ -125,6 +115,7 @@ if on.toggle('Image to PDF feature'):
 					for item in back_ground.getdata():
 						if ( item[0] >245 and item[1] >245 and item[2] >245 ) or ( item[0] <5 and item[1] <5 and item[2] <5 ):
 							newImage.append((255, 255, 255, 0))
+							
 						else:
 							newImage.append((item[0],item[1],item[2], opaque))
 					back_ground.putdata(newImage)
@@ -137,6 +128,7 @@ if on.toggle('Image to PDF feature'):
 					_, _, _, mask = back_ground.split()
 					myMerged_image.paste(back_ground, (0, (im.size[1]-xxx)//2), mask)
 					myMerged_image.save(x,formet)
+				st.image(x)
 				
 				
 
