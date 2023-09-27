@@ -8,4 +8,4 @@ pdfkit
 pandas
 openpyxl
 reportlab
-PDFNetPython3==8.1.0
+PDFNetPython3
