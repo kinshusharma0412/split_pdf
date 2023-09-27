@@ -10,4 +10,3 @@ openpyxl
 reportlab
 PDFNetPython3
 puthon3
-python3 -m pip install apryse-sdk --extra-index-url=https://pypi.apryse.com
