@@ -47,6 +47,9 @@ if on.toggle('Image to PDF feature'):
 	if submit_button.form_submit_button(label="Submit your choice"):
 		 
 		if st.session_state.back:
+			back_name="./"+back_uploaded_files.name+".png"
+			with open(back_name, "wb") as file:
+				file.write(back_uploaded_files.getvalue())
 			back_ground= Image.open(back_name)
 			back_ground = back_ground.convert('RGBA')
 			newImage = []
@@ -58,9 +61,7 @@ if on.toggle('Image to PDF feature'):
 			back_ground.putdata(newImage)
 			back_ground.save('output1.png')
 			st.image('output1.png')
-			back_name="./"+back_uploaded_files.name+".png"
-			with open(back_name, "wb") as file:
-				file.write(back_uploaded_files.getvalue())
+			
 			
 		for uploaded_file in uploaded_files:
 				if multiple:
