@@ -9,3 +9,5 @@ pandas
 openpyxl
 reportlab
 PDFNetPython3
+python3
+pip3
