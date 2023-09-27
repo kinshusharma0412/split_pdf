@@ -18,7 +18,7 @@ onon= st.empty()
 onn1= st.empty()
 pdf_path="./@Polls_Quiz.pdf"
 
-l
+
 if 'img' not in st.session_state:
 	st.session_state.img = []
 if 'clicked' not in st.session_state:
