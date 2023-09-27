@@ -7,3 +7,4 @@ tabula-py
 pdfkit
 pandas
 openpyxl
+reportlab
