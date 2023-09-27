@@ -89,11 +89,11 @@ if on.toggle('Image to PDF feature'):
 					back_ground.save('output.png')
 					im = Image.open(x)
 					back_ground= Image.open("output.png")
-					st.image(x)
-					st.image("output.png")
+					
 					Image1copy = im.copy()
 					Image2copy = back_ground.copy()
 					Image1copy.paste(Image2copy, ((xxx-im.size[1])//2,0))
+					
 					
 				else:
 					back_resize=back_ground.resize((xxx,xxx))
@@ -111,13 +111,14 @@ if on.toggle('Image to PDF feature'):
 					back_ground.save('output.png')
 					im = Image.open(x)
 					back_ground= Image.open("output.png")
-					st.image(x)
-					st.image("output.png")
+					
 					Image1copy = im.copy()
 					Image2copy = back_ground.copy()
 					Image1copy.paste(Image2copy, (0, (im.size[1]-xxx)//2))
 					
 				Image1copy.save(x)
+				st.image(x)
+				st.image("output.png")
 		else:
 			
 			for x in st.session_state["img"]:
