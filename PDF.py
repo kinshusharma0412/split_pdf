@@ -93,7 +93,7 @@ if on.toggle('Image to PDF feature'):
 					back_ground = back_ground.convert('RGBA')
 					newImage = []
 					for item in back_ground.getdata():
-						if ( item[0] >245 and item[1] >245 and item[2] >245 ) or ( item[0] <5 and item[1] <5 and item[2] <5 ):
+						if ( item[0] >245 and item[1] >245 and item[2] >245 ) or ( item[0] <15 and item[1] <15 and item[2] <15 ):
 							newImage.append((255, 255, 255, 0))
 						else:
 							newImage.append((item[0],item[1],item[2],opaque))
@@ -115,7 +115,7 @@ if on.toggle('Image to PDF feature'):
 					back_ground = back_ground.convert('RGBA')
 					newImage = []
 					for item in back_ground.getdata():
-						if ( item[0] >245 and item[1] >245 and item[2] >245 ) or ( item[0] <5 and item[1] <5 and item[2] <5 ):
+						if ( item[0] >245 and item[1] >245 and item[2] >245 ) or ( item[0] <15 and item[1] <15 and item[2] <15 ):
 							newImage.append((255, 255, 255, 0))
 							
 						else:
