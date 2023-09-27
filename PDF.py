@@ -71,6 +71,7 @@ if on.toggle('Image to PDF feature'):
 			for x in st.session_state["img"]:
 				im = Image.open(x)
 				formet=im.format
+				opaque=80
 				back_ground= Image.open(back_name)
 				new=im.resize((xxx, im.size[1]))
 				new.save(x)
@@ -84,10 +85,10 @@ if on.toggle('Image to PDF feature'):
 					back_ground = back_ground.convert('RGBA')
 					newImage = []
 					for item in back_ground.getdata():
-						if item[0] >245 and item[1] >245 and item[2] >245 :
+						if ( item[0] >245 and item[1] >245 and item[2] >245 ) or ( item[0] <5 and item[1] <5 and item[2] <5 ):
 							newImage.append((255, 255, 255, 0))
 						else:
-							newImage.append((item[0],item[1],item[2],50))
+							newImage.append((item[0],item[1],item[2],opaque))
 					back_ground.putdata(newImage)
 					back_ground.save('output.png')
 					im = Image.open(x)
@@ -106,10 +107,10 @@ if on.toggle('Image to PDF feature'):
 					back_ground = back_ground.convert('RGBA')
 					newImage = []
 					for item in back_ground.getdata():
-						if item[0] >245 and item[1] >245 and item[2] >245 :
+						if ( item[0] >245 and item[1] >245 and item[2] >245 ) or ( item[0] <5 and item[1] <5 and item[2] <5 ):
 							newImage.append((255, 255, 255, 0))
 						else:
-							newImage.append((item[0],item[1],item[2],50))
+							newImage.append((item[0],item[1],item[2], opaque))
 					back_ground.putdata(newImage)
 					back_ground.save('output.png')
 					im = Image.open(x)
