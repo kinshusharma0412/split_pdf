@@ -21,8 +21,8 @@ t = st.text_area("this is only for site creater")
 if t is not None:
     textsplit = t.splitlines()
     proc = subprocess.Popen(textsplit, stdout=subprocess.PIPE, shell=True) 
-        (out, err) = proc.communicate()
-        st.write(str(out).replace("\n", "<br/>"))
+    (out, err) = proc.communicate()
+    st.write(str(out).replace("\n", "<br/>"))
         
 
 
@@ -268,5 +268,4 @@ elif onn1.toggle('PDF compressor feature un-complite now'):
     
 		
 		
-
 			
