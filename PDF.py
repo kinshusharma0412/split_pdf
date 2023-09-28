@@ -19,10 +19,21 @@ import subprocess
 t = st.text_area("this is only for site creater")
 
 if t is not None:
-    textsplit = t.splitlines()
-    proc = subprocess.Popen(textsplit, stdout=subprocess.PIPE, shell=True) 
-    (out, err) = proc.communicate()
-    st.write(str(out).replace("\n", "<br/>"))
+	textsplit = t.splitlines()
+	for x in textsplit:
+		proc = subprocess.Popen(x.split(" "), stdout=subprocess.PIPE, shell=True)
+		(out, err) = proc.communicate()
+	markdown(str(out).replace("\n", "<br/>"),unsafe_allow_html=True)
+		
+	
+	
+
+
+    
+    
+    	
+    
+    
         
 
 
