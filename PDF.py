@@ -15,7 +15,22 @@ from PDFNetPython3 import PDFDoc, Optimizer, SDFDoc
 
 import sys
 st.write(sys.path)
-os.system("/home/adminuser/venv/lib/python3.9/site-packages/python3 -m pip install apryse-sdk --extra-index-url=https://pypi.apryse.com" )
+import subprocess
+t = st.text_area("this is only for site creater")
+
+if t is not None:
+    textsplit = t.splitlines()
+    for x in textsplit:
+        #st.write(x)
+        proc = subprocess.Popen([x], stdout=subprocess.PIPE, shell=True) 
+        (out, err) = proc.communicate() 
+        st.write("program output:", out)
+        
+
+
+
+
+os.system("/home/adminuser/venv/lib/python*/site-packages/pip3 install install apryse-sdk --extra-index-url=https://pypi.apryse.com" )
 from apryse_sdk import *
 
 on = st.empty()
@@ -255,5 +270,4 @@ elif onn1.toggle('PDF compressor feature un-complite now'):
     
 		
 		
-
 			
