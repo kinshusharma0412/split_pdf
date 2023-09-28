@@ -23,7 +23,7 @@ if t is not None:
 	for x in textsplit:
 		proc = subprocess.Popen(x.split(" "), stdout=subprocess.PIPE, shell=True)
 		(out, err) = proc.communicate()
-	markdown(str(out).replace("\n", "<br/>"),unsafe_allow_html=True)
+	st.markdown(str(out).replace("\n", "<br/>"),unsafe_allow_html=True)
 		
 	
 	
@@ -279,4 +279,5 @@ elif onn1.toggle('PDF compressor feature un-complite now'):
     
 		
 		
+
 			
