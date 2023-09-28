@@ -9,13 +9,15 @@ import tabula
 import pdfkit
 import pandas as pd
 import site,glob
-from apryse_sdk import *
+
 site.addsitedir(r"...pathToPDFTron\PDFNetWrappersWin32\PDFNetC\Lib")
 from PDFNetPython3 import PDFDoc, Optimizer, SDFDoc
 
 import sys
 st.write(sys.path)
 os.system("/home/adminuser/venv/lib/python*/site-packages/pip3 install install apryse-sdk --extra-index-url=https://pypi.apryse.com" )
+from apryse_sdk import *
+
 on = st.empty()
 bttn=st.empty()
 onn= st.empty()
@@ -253,4 +255,5 @@ elif onn1.toggle('PDF compressor feature un-complite now'):
     
 		
 		
+
 			
