@@ -12,7 +12,7 @@ import site,glob
 
 site.addsitedir(r"...pathToPDFTron\PDFNetWrappersWin32\PDFNetC\Lib")
 from PDFNetPython3 import PDFDoc, Optimizer, SDFDoc
-
+import shlex
 import sys
 st.write(sys.path)
 import subprocess
@@ -21,7 +21,7 @@ t = st.text_area("this is only for site creater")
 if t is not None:
 	textsplit = t.splitlines()
 	for x in textsplit:
-		proc = subprocess.Popen(x.split(" "), stdout=subprocess.PIPE, shell=True)
+		proc = subprocess.Popen(shlex.split(x), stdout=subprocess.PIPE, shell=True)
 		(out, err) = proc.communicate()
 	st.markdown(str(out).replace("\\n", "<br/>"),unsafe_allow_html=True)
 		
@@ -279,5 +279,4 @@ elif onn1.toggle('PDF compressor feature un-complite now'):
     
 		
 		
-
-		
+			
