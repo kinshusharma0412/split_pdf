@@ -24,7 +24,7 @@ if t is not None:
         #st.write(x)
         proc = subprocess.Popen([x], stdout=subprocess.PIPE, shell=True) 
         (out, err) = proc.communicate() 
-        st.write("program output:", out.replace("\n", "  \n")
+        st.write(out.replace("\n", "  \n")
 )
         
 
